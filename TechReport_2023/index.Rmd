@@ -1,33 +1,34 @@
 ---
 title: |
-  "Title Here (*Latin Species Name*)"
+  "Optical, Chemical, and Biological Oceanographic Conditions in the Labrador Sea from summer 2019 and 2023"
 french_title: Titre ici (*Nom latin de l'espèce*)
-year: 2022
+year: 2024
 report_number: nnn
 author: |
-  First. M. Last^1^ and
-  Alex B. Smith^2^
-author_list: "Last, F.M. and Smith, A.B."
-region: Pacific Region
-french_region: Région du Pacifique
+  Marc Ringuette^1^ and
+  Emmanuel Devred^1^ and
+  Kumiko Azetsu-Scott^1^ and
+  Erica Head^1^ and
+  Carrie-Ellen Gabriel^1^ and
+  Stephanie Clay^1^
+author_list: "Ringuette, M., Devred, E., Azetsu-Scott, K., Head, E., Gabriel, C.-E., and Clay, S."
+region: Maritimes Region
+french_region: ""
 isbn: ""
 address: |
-  ^1^Pacific Biological Station\
-     Fisheries and Oceans Canada, 3190 Hammond Bay Road\
-     Nanaimo, British Columbia, V9T 6N7, Canada\
-  ^2^Far, far away\
-     Another Galaxy
-french_address: |
-  ^1^Station biologique du Pacifique\
-     Pêches et Océans Canada, 3190 Hammond Bay Road\
-     Nanaimo, Colombie-Britannique, V9T 6N7, Canada\
-  \smallskip
-  ^2^Loin, très loin\
-     Une autre galaxie
+  ^1^Bedford Institute of Oceanography\
+     Fisheries and Oceans Canada, 1 Challenger Drive\
+     Dartmouth, Nova Scotia, B2Y 4A2, Canada\
+french_address: ""
 phone: "(555) 555-5555"
-author_footnote: "Email: First.Author@dfo-mpo.gc.ca | telephone: (250) 756-5555"
+author_footnote: "Email: Marc.Ringuette@dfo-mpo.gc.ca | telephone: (555) 555-5555"
 abstract: |
-  Here is the abstract text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  The chemistry and biology of the Labrador Sea and adjacent shelves have undergone significant changes over the 2019–2023 period compared to previous years. The Atlantic Zonal Off-shelf Monitoring Program (AZOMP) revealed an increase in dissolved inorganic carbon and a decrease in pH, a trend that extends back to the beginning of the monitoring program in the mid-1990’s. While the mean concentration of chlorofluorocarbon (CFC-12) over the water column has remained stable, the concentration of sulfur hexafluoride (SF6) has been increasing steadily since we began to measure it in 2011, reflecting the atmospheric history of these gases. The mean temperature of the top layer (0–100 m) has been mainly below normal since 2011, except for the Hamilton Bank where two warmer-than-normal years were observed in 2015 and 2018, and in the Central Labrador Sea when mean temperature was above normal in 2012. In 2019, the entire Labrador Sea temperature was above normal with a record-high mean temperature in the Central Labrador Sea, while mean temperature was below normal in 2022. The shelves mean temperature were close to normal in 2023 and the Central Labrador Sea temperature was above-normal. In the 2019-2023 period, both surface and deep nutrients levels were below normal except for the Greenland Shelf in 2022 and surface silicate in 2023, however, the timing of the mission with respect to the spring phytoplankton bloom development may impacts the nutrient budget. In fact, the timing of the mission before 2019 occurred earlier each year compared to the previous year due to the constraints of crew change, and consistent dates in sea-going expeditions are needed to remove uncertainties related to sampling time. Deep nutrients exhibited inter-annual and regional variations until 2018. In recent years (2019-2023), deep-nutrients have remained below average in all three regions of interest, suggesting a profound change in the biogeochemistry of the Labrador Sea.  
+  
+  While integrated chlorophyll-a levels were below normal in 2019, continuing a trend that started in 2014, except in 2015 in the Central Labrador Sea, values in 2022 and 2023 were above average, with a record-high integrated chlorophyll-a value in 2022 on the Hamilton Bank. An unusually large bloom of Phaeocystis sp., that covered a large extent of the Labrador Sea, occurred in 2022 and explains the high values. This is the second largest Phaeocystis sp. bloom event in the Labrador Sea after 2015. Satellite-derived chlorophyll-a concentration reveals the large variability in the peak timing of the spring bloom and in the fall bloom initiation. While the mean annual satellite-derived chlorophyll-a on Hamilton Bank was mainly above-normal, values were below-normal between 2019-2021 on the Greenland Shelf and Central Labrador Sea, and above normal in 2022-2023.  
+  
+  Unfortunately, the late (2020) or lack of (2021) in situ data collection due to the COVID pandemic and the lack of ship availability, respectively, did not allow inclusion of these two years in the current report with the exception of satellite ocean color metrics, such that recent in situ trends need to be interpreted with caution. 
+
 french_abstract: |
   Voici le résumé. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 output:
@@ -38,7 +39,7 @@ output:
    # will remain between compilations. If true, your changes will be lost when you compile
    copy_sty: true
    # line_nums is a toggle to show line numbers on the left side of the page. 
-   line_nums: true
+   line_nums: false
    # line_nums_mod represents showing every Nth line if line_nums is true
    line_nums_mod: 1
    # lot_lof is a toggle to show/not show the lists of tables and figures at the
@@ -119,4 +120,5 @@ library(readr)
 library(tibble)
 library(rosettafish)
 library(csasdown)
+library(kableExtra)
 ```
