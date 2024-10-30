@@ -1,0 +1,18 @@
+# Summary
+
+The Atlantic Zone Off-Shelf Monitoring Program (AZOMP) provides observations on ocean climate and plankton variability within the Labrador Sea and adjacent shelves affecting ecosystems of Atlantic Canada and climate from a regional to global scale. In the Labrador Sea, surface heat losses in winter result in the formation of dense waters, which spread across the ocean, ventilating the deep layers, thus contributing to the global ocean-overturning circulation. Since 2014, the mid-high latitude North Atlantic experienced moderate to high surface heat loss leading to elevated convective mixing during the winter period, and significant formation of Labrador Sea Water (LSW), among the highest in terms of volume and depth.  
+
+Strong inter-annual variability was observed in surface nutrient concentrations, which are consistent among regions. Since 2014, there have been positive anomalies in all regions, with a trend that started in 2013 in the CLS for nitrate, phosphate, and silicate. The CLS showed a below-average nitrate concentration in 2015, however, likely as a result of the nutrient draw down caused by the abnormally large bloom observed in that year. Negative anomalies have been observed on HB and CLS in 2022 and 2023, breaking the trend of high anomalies. Chl-a concentrations have followed an inverse pattern, with lower than normal concentrations for all three regions since 2014, except for the anomalously high concentration in 2015, and high concentrations on HB and CLS in 2022-2023. The high anomalies in 2015 and 2022 were associated with an intense phytoplankton bloom consisting mainly of Phaeocystis sp. which was identified from shipboard observations. Ocean color metrics (spring peak timing, fall bloom initiation, and annual and seasonal averages) showed no obvious trends over time and each region revealed its own pattern. Satellite observations are impacted by cloud cover, resulting in data gaps which might miss the peak of the bloom in a given year and region. Recurrent earlier sampling dates from year to year may partly explain the observed negative anomalies in in-situ chl-a concentrations, since sampling may have occurred before the start of the seasonal spring bloom.
+The 0–100 m abundances of several mesozooplankton taxa followed a pattern similar to that shown by phytoplankton (chl-a) concentration, with lower-than-average abundances since 2014. For some taxa this may be linked in part to their seasonal life-cycles, since earlier sampling in recent years means that the populations were less developed (i.e., include fewer members of the new year’s generation). Interestingly, the unusually intense bloom of 2015 did not appear to have any effect on the abundances of any of the mesozooplankton taxa.  
+
+
+# Acknowledgements
+
+The authors thank the sea-going staff of the Bedford Institute of Oceanography and the officers and crew of the Canadian Coast Guard ships Amundsen and Captain Jacques Cartier as well as the UNOLS research vessel Atlantis. Jay Barthelotte, Robert Benjamin, Jay Bugden, Diana Cardoso, Carla Caverhill, Darlene Childs Terry Cormier, Melissa Falkner, Jennifer Field, Pascal Guillot, Adam Hartling, Dave Hebert, Flo Hum, Jeff Jackson, Matt Lawson, Chantelle Layton, Dave Levy, Richard Nelson, Kevin MacIsaac, Kevin Pauley, Tim Perry, Cathy Porter, Steve Punshon, Maddison Proudfoot, Peter Thamer Christiane Theriault, Mike Vining and Kristen Wilson contributed to sample collection, sample analysis, data analysis, data management, and data sharing.
+
+
+<!-- \clearpage -->
+
+<!-- # References -->
+
+<!-- <div id="refs"></div> -->

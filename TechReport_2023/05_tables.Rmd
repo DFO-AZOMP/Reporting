@@ -1,0 +1,10 @@
+\clearpage
+
+# Tables
+
+```{r table1}
+cruise_details <- read.csv("../Data/Cruise_details.csv")
+colnames(cruise_details) <- gsub("Num_|_Stations","",colnames(cruise_details))
+colnames(cruise_details) <- paste0("\\textbf{",colnames(cruise_details),"}")
+csasdown::csas_table(cruise_details, format="latex", caption="Atlantic Zone Off-Shelf Monitoring Program sampling missions between 2014 and 2018.") %>% add_header_above(c(" "=3,"Number of stations"=3), bold=TRUE)
+```

@@ -1,155 +1,95 @@
-# Methods
+# Data and Methods
 
-To render the document in French, simply open `index.Rmd` and change this:
+The following section describes the data sources and sampling methods used for the estimation of the biogeochemical variables and indices depicted in the present report.
 
-````
-output:
- csasdown::techreport_pdf:
-   french: false
-````
-to this:
-````
-output:
- csasdown::techreport_pdf:
-   french: true
-````
-and render as usual. You can switch back and forth at any time to see the changes in the examples. If you develop your document with this in mind you will save yourself a lot of work when you receive the translations and it's time to publish the French version. Try it now, and once in awhile when you are developing your document.
+## In situ samples collection
 
-> *Note that Technical Reports are not required to be in both languages, but Science Reponses and Research Documents are.*
+### Core stations
 
-Here is a simple figure plotted in a `knitr` code chunk. Look at the code (`02_methods.Rmd`) to see how all figure and table captions should be written to permit easy migration to French.
+The core stations (Figure 1) remain the priority of the monitoring program to ensure geographical consistency over time when reporting on the data. The main goal of the sampling is to obtain a complete suite of measurements at selected locations from surface to bottom to characterize the physical and chemical properties of the entire water column and the biological properties in the upper layers (0 to 100m). The CTD (Conductivity, Temperature, Depth)-rosette system used to carry out measurements and water collection includes twelve 24 L Niskin bottles and a core of twinned sensors to measure temperature, salinity and oxygen, as well as additional sensors to measure fluorescence (both chl-a and Colored Dissolved Organic Matter (CDOM)), pH, light attenuation, Photosynthetically Active Radiation (PAR) and current velocity (LADCP). Water samples are collected at 24 depths distributed over the entire water column to measure transient gasses (CFC and SF6), oxygen, partial pressure of carbon dioxide (pCO2), Total Inorganic Carbon (TIC), alkalinity, pH, nutrients, and salinity. In addition to the previous measurements, four surface-layer depths (2, 25, 50 and 100 m) are sampled for chl-a and cell abundance (Flow Cytometry). The 2-m depth is sampled for phytoplankton absorption and pigment composition, particulate carbon, and CDOM absorption. Once the CTD-Rosette is onboard, the collection of water from the Niskin bottles is carried out as listed previously (i.e., gases first and phytoplankton last) from bottom to surface waters to minimize the loss of transient tracers and other gases during sampling. All variables were sampled and analyzed following GO-SHIP protocols (Hood et al. 2010; Mitchell et al. 2002). In addition to water sampling from the Niskin bottles, mesozooplankton are collected in vertical net hauls in the upper 100 m using a 0.75 m diameter ring net fitted with a 200 $\mu$m mesh, and 0.5 m diameter ring net with a 76 $\mu$m mesh size. A detailed description of the processing of the physical oceanographic data is presented in Yashayaev et al. 2020.  
 
-(ref:testfig) Test figure with a caption will be numbered automatically.
+When time allows, extra stations are added between core stations in order to increase the spatial resolution of the sampling. However, on these stations only measurements from the sensors located on the CTD-Rosette are recorded and water is not collected unless requested by programs outside the core program. At these stations, the CTD-Rosette system is lowered to the ocean bottom to profile the entire water column. Note that in the current report, only data collected on the core and biological stations are included.  
 
-(ref:testfig-french) French caption would go here once you've had it translated.
+### Biological stations
 
-```{r testfig, fig.pos="H", fig.cap = ifelse(fr(), "(ref:testfig-french)", "(ref:testfig)")}
-plot(cars)
-```
+The purpose of these stations is to increase the vertical resolution compared to core stations and to carry out Photosynthesis-Irradiance (P-I) 14C-uptake experiments with phytoplankton (water) samples. In these experiments, 33 aliquots of phytoplankton from two depths (surface and close to the deep chl-a maximum) are incubated with 14C-bicarbonate at in situ temperatures and 30 light levels (+ 3 dark bottles) for approximately 3 hours. The P-I measurements are used to estimate primary production according to Platt and Jassby (1976). The actual location of the biological stations is not critical, so the vessel is stopped mid-morning during transit between stations, in order to start the incubations around noon, local time, to ensure consistency of the method. Because the biological stations focus on the upper layers of the water column, the CTD sensor is only lowered to 200 m, allowing for a greater vertical resolution of all the biogeochemical parameters. Bottles are closed at 2, 10, 20, 30, 40, 50, 60, 80, 100, and 150 m, with an extra bottle at the depth of the deep chl-a maximum, as revealed by the in situ fluorescence sensor. In general, a total of seven biological stations are sampled, which are spread along the AR7W transect: two on the Labrador Shelf, three in the Central Labrador Sea, and two on the Greenland Shelf.  
 
-Here are two ways to make the same example data frame and simple `csas_table()` calls for each: 
+## Discrete variable measurements and data collection
 
-```{r testtab, echo=TRUE}
-d <- structure(list(
-  Year = c("2018", "2019", "2020"), 
-  `Value 1` = c(1.12, 2.32, 3.67), 
-  `Value 2` = c(31.9, 2.8, 112.2)), 
-  row.names = c(NA, -3L), class = "data.frame")
-  names(d) <- c(en2fr("Year"),
-                 paste0(en2fr("Value"), 1),
-                 paste0(en2fr("Value"), 2))
-csasdown::csas_table(d,
-  align = c("c", "r", "r"),
-  caption = ifelse(fr(),
-                   "French goes here",
-                   "Test table (data is d) with a caption will be numbered automatically."))
-```
+### Transient Tracers SF6 and CFC-12
 
-```{r testtab2, echo=TRUE}
-d1 <- tribble(
-  ~Year, ~`Value 1`, ~`Value 2`,
-   2018,       1.12,       31.9,
-   2019,       2.32,        2.8,
-   2020,       3.67,      112.2)
-names(d1) <- c(en2fr("Year"),
-               paste0(en2fr("Value"), 1),
-               paste0(en2fr("Value"), 2))
-csasdown::csas_table(d1,
-  align = c("c", "r", "r"),
-  caption = ifelse(fr(),
-                   "French goes here",
-                   "Test table (data is d1) with a caption will be numbered automatically."))
-```
+Prior to analysis, seawater samples from the rosette were drawn directly into 250 mL glass syringes and were stored at approximately 4 °C in a low-temperature incubator for up to 12 hours. Immediately before analysis, the samples were warmed to approximately 20 °C in a water bath then injected into the purge vessel of a custom-made purge-and-trap system, where dissolved gases were stripped from the sample in a stream of ultra-high-purity nitrogen with a flow rate of 140 mL per minute. The SF6 and CFC-12 gases were quantitatively retained in a trap comprised of 30 cm of 1/16" stainless steel tubing packed with 100–120 mesh Carboxen 1000, held at -70 °C over liquid nitrogen. After each 7 minute purge cycle, the trap was heated to 180 °C with a low-voltage electric current and the desorbed gases directed to a Varian gas chromatograph equipped with an electron-capture detector. SF6 and CFC-12 were separated on a one-meter pre-column packed with Porasil B and a three-meter main column packed with Molecular Sieve 5A held isothermally at 100 °C. Total run-time was 11.5 minutes. The chromatographic sample peaks were quantified with Varian Galaxie software and the analytical system calibrated at least once each day using an air standard supplied by the Climate Monitoring and Diagnostics Laboratory of the National Oceanic and Atmospheric Administration (CMDL/NOAA), Boulder, Colorado. Analytical precision, as determined by repeated standard injections, was around ± 2% for SF6 and ± 0.7% for CFC-12.  
 
-Notice the difference in how the English and French captions are generated for tables compared to the way they are generated for figures.
+### pH Measurements
 
-To reference the tables and figures, just place code like this for tables: `\@ref(tab:testtab)` inline in text (`testtab` is the knitr code chunk name) and like this for figures: `\@ref(fig:testfig)`. Note the difference in the tag preceeding the colon in those code snippets, `tab` for table references and `fig` for figure references (See Table \@ref(tab:ref-tab) for all types). Here are the table references so far in this document: Table \@ref(tab:testtab) and Table \@ref(tab:testtab2), and the figure reference: Figure \@ref(fig:testfig). The numbers are clickable.
+Seawater was analyzed for pH according to spectrophotometric Standard Operating Procedure 6b (SOP 6b) described in Guide to best practices for ocean CO2 measurements (Dickson et al. 2007). Water was collected from the rosette in 60 mL borosilicate glass tubes, allowing each sample to overflow by at least one volume. Samples were stored in a low-temperature incubator at 4 °C prior to analysis. The maximum time between sampling and analysis was about 4 hours. Racks of tubes were then placed in a water bath held at 25 °C and allowed to thermally equilibrate for 30 minutes. Each sample was then introduced into a water-jacketed 10 cm quartz cell and 30 $\mu$L of the purified indicator dye m-cresol purple added before mixing well. The absorbance of light at the wavelengths 434 and 578 nm was measured with an Agilent photodiode array spectrophotometer and the resulting extinction coefficients at these wavelengths were used to determine the pH of the sample. The performance of the spectrophotometer was monitored by daily measurements of a trisaminomethane (Tris) buffer solution of known pH.
 
-Next we show a more complicated table with grouped rows and text wrapping. The code becomes more difficult when you want to make non-trivial tables, so it is recommended to think about how to keep tables as simple as possible to avoid this kind of code if you're not comfortable with it. 
+### Total Inorganic Carbon (TIC) and Total Alkalinity (TA)
 
-The code below works like this:
+Seawater samples were collected in 500 mL borosilicate glass bottles and preserved with mercuric chloride following the method described in Guide to best practices for ocean CO2 measurements (Dickson et al. 2007). Total Inorganic Carbon (TIC) was determined after return to BIO’s chemical laboratory using gas extraction and coulometric titration with photometric endpoint detection (Johnson, et al. 1985). Total alkalinity (TA) was measured by open-cell potentiometric titration with full curve Gran Point determination using a Titrando dosimat with Tiamo software, in conjunction with a sample-delivery system built in-house. Certified Reference Material (CRM) (supplied by Professor Andrew Dickson, Scripps Institution of Oceanography, San Diego, USA) was analyzed in duplicate at intervals to calibrate for accuracy.  
 
-1. `read_csv(file.path("data", "multirow.csv"))` - reads data in from the data file
-2. `mutate_all(function(x){gsub("\\\\n", "\n", x)})` -  changes `\\n` to `\n` in all columns. Even though the data file contains only `\n`, the `readr::read_csv()` function changes these to `\\n`. The extra backslashes are required to escape the two, so four are needed
-3. `mutate_all(kableExtra::linebreak)` -  replaces `\n`'s in all columns with a special LaTeX command that causes newlines to be created
-4. `mutate_all(function(x){gsub("%", "\\\\%", x)})` - replaces percent signs with an escaped version in all columns, as they are special characters in LaTeX
-5. `mutate_all(function(x){gsub("emph\\{", "\\\\emph\\{", x)})` - replaces `emph{` with an escaped version in all columns so that LaTeX can run it as its own command `emph{}` (italicization)
-6. Remove all NA's from the grouping column, replacing them with empty strings so `NA` doesn't appear in the output table
-7. `csas_table()` command - makes the table from the input data
-8. The 5 `kableExtra::row_spec(XX, hline_after = TRUE)` commands - insert a horizontal line across the whole table after each group.
-9. The lines with `kableExtra::row_spec(1, extra_latex_after = "\\cmidrule(l){2-2}") |>` commands - insert a horizontal line across the second column only (`{2-2}` signifies the column range)
-10. The 2 `kableExtra::column_spec(XX, width = "XXem")` commands - change the width of the column to a set value. This has the effect of wrapping the text so it doesn't run off the page
+### Discrete pCO2
 
-Understanding how this table works will take you a long way in LaTex table generation. For example you could make any text bold that you want by using `\textbf{}` instead of `\emph{}`. To do that, you would just change the `emph` in the data file (`multirow.csv`) to `textbf` and add a the following new line into the code below, right before or after the line that deals with `emph`:
+Water samples for pCO2 measurements were drawn from the rosette (following dissolved oxygen) into 160 mL volume crimp seal vials, allowing each sample vial to overflow by about 3 volumes before immediately preserving with 50 $\mu$L of saturated mercuric chloride solution and crimp sealing with butyl rubber septa. The samples were stored at 4 $\degree$C and analyzed at BIO’s chemical laboratory upon return. Surface samples were collected at every station throughout the cruise and two full-depth profiles were collected from Stations 17 and 18 on the AR7W line. pCO2 was later determined by headspace equilibrium gas chromatography with flame ionization detection, using the method of Neill et al. (1997).  
 
-`mutate_all(function(x){gsub("textbf\\{", "\\\\textbf\\{", x)}) |>`
+### Surface temperature (Surface to 100 m)
 
-```{r multi-row-table, echo=TRUE}
-read_csv(file.path("data", "multirow.csv")) |> 
-  mutate_all(function(x){gsub("\\\\n", "\n", x)}) |> 
-  mutate_all(kableExtra::linebreak) |>
-  mutate_all(function(x){gsub("%", "\\\\%", x)}) |> 
-  mutate_all(function(x){gsub("emph\\{", "\\\\emph\\{", x)}) |> 
-  mutate(`Overarching goal` = ifelse(is.na(`Overarching goal`),
-                                     "",
-                                     `Overarching goal`)) |> 
-  csas_table(format = "latex",
-             escape = FALSE,
-             font_size = 11,
-             bold_header = FALSE,
-             caption = ifelse(fr(),
-                              "French goes here",
-                              "Goals and performance metrics")) |>
-  kableExtra::row_spec(1, extra_latex_after = "\\cmidrule(l){2-2}") |> 
-  kableExtra::row_spec(2, extra_latex_after = "\\cmidrule(l){2-2}") |> 
-  kableExtra::row_spec(3, extra_latex_after = "\\cmidrule(l){2-2}") |> 
-  kableExtra::row_spec(4, hline_after = TRUE) |> 
-  kableExtra::row_spec(5, extra_latex_after = "\\cmidrule(l){2-2}") |> 
-  kableExtra::row_spec(6, extra_latex_after = "\\cmidrule(l){2-2}") |> 
-  kableExtra::row_spec(7, extra_latex_after = "\\cmidrule(l){2-2}") |> 
-  kableExtra::row_spec(8, extra_latex_after = "\\cmidrule(l){2-2}") |> 
-  kableExtra::row_spec(9, extra_latex_after = "\\cmidrule(l){2-2}") |> 
-  kableExtra::row_spec(10, hline_after = TRUE) |> 
-  kableExtra::row_spec(11, extra_latex_after = "\\cmidrule(l){2-2}") |> 
-  kableExtra::row_spec(12, extra_latex_after = "\\cmidrule(l){2-2}") |> 
-  kableExtra::row_spec(13, extra_latex_after = "\\cmidrule(l){2-2}") |> 
-  kableExtra::row_spec(14, extra_latex_after = "\\cmidrule(l){2-2}") |> 
-  kableExtra::row_spec(15, hline_after = TRUE) |> 
-  kableExtra::row_spec(16, hline_after = TRUE) |> 
-  kableExtra::row_spec(17, extra_latex_after = "\\cmidrule(l){2-2}") |> 
-  kableExtra::row_spec(18, extra_latex_after = "\\cmidrule(l){2-2}") |> 
-  kableExtra::row_spec(19, hline_after = TRUE) |> 
-  kableExtra::column_spec(1, width = "15em") |>
-  kableExtra::column_spec(2, width = "30em")
+CTD profiles were collected between the surface and near bottom (often several thousand meters deep), however, in this report only temperature collected from the 0–100 m range is used, which is the most relevant to interpret the biological sampling. CTD profiles are binned at 1 m resolution and the arithmetic average is computed to provide a single temperature value per profile for the 0–100 m layer. The first few meters from the downward cast are generally not recorded, due to the requirement for sensors to acclimate underwater (3 min at 10m deep). Following the acclimation period, the instrument is brought as close as possible to the surface but, partly because of the ship’s movements, the sensors do not reach the theoretical 0 m depth. Surface values are obtained by linear extrapolation of the temperatures at the two depths closest to the surface (e.g., 2 and 3 m) and this value is included in the mean temperature. Following the surface measurement, the CTD is lowered to the bottom at a speed of 30 m/min for the first hundred meters and at a speed of 60m/min for the rest of the cast. An altimeter is used to reach about a 5 m elevation over the seafloor, at which the first bottle is closed and the CTD starts its ascent.  
 
-```
+### Nutrients
 
-While building complex tables you must take an iterative approach once you've made the basic table and want to add detailed elements: add one element; test; fix errors; fix logic/design issues; repeat. In the construction of Table \@ref(tab:multi-row-table), one line of code at a time was added with the results checked and made sure to be correct before adding the next line of code.
+Nutrient measurements were made using a SEAL Analytical continuous-flow AutoAnalyzer 3 (AA3) and concentrations are expressed in micromoles per liter. The analytical methods have been modified from the historically used Technicon II: Technicon for Seawater Analysis (Silicate 186 72W, Phosphate 155 71W, Nitrate/Nitrite 158 71W) (Kérouel and Aminot 1997) so as to remain compatible with methods described in the nutrient section of The GO-SHIP Repeat Hydrography Manual (Becker et al. 2019). Duplicate nutrient samples were drawn into 10 ml collection vials directly from the rosette without using tubing, with technicians wearing vinyl gloves to avoid contamination. Samples were stored at 4 $\degree$C and analyzed within 12 hours. Five dissolved inorganic nutrients were analyzed, namely, nitrate plus nitrite (NO3 + NO2), nitrite (NO2), phosphate (PO4), silicate (SiO4), and ammonium (NH4). Note that in 2023, nutrients were frozen and analyzed upon return to BIO due to a lack of laboratory space in the CCS Jacques Cartier preventing the installation of the auto-analyser.  
 
-On the following pages we have an example of a long and wide table which is in landscape mode. This is accomplished by setting `landscape = TRUE` in the `csas_table()` call. You can change the font size if the table it still too large and overlaps the header and footer lines.
+The instrument was calibrated for every analytical run, using a six-point calibration curve from pre-made solutions diluted using artificial seawater of same salinity as the samples, distributed over the concentration range for each nutrient. The analysis was followed by a drift standards analysis and blank samples to determine the method’s detection limits. The baseline was re-assessed every 12 sample duplicates (i.e., every 6 samples). The pH of the imidazole buffer was monitored to ensure optimal pH levels for the nitrate plus nitrite analyses, and adjusted as needed using hydrochloric acid, thus improving the lifespan and stability of the cadmium reduction column. Ultimately, this method diminished drift issues observed in the past between analytical runs.  
 
-\clearpage
+The quality of these analyses was validated by analyzing a CRM for nutrients produced by KANSO Co., Ltd, Japan. There is no existing reference material for ammonium in seawater, although CRM values were tracked for consistency.  
 
-<!-- clearpage ends the page, and also dumps out all floats.
-Floats are things like tables and figures. -->
-\begin{landscapepage}
-```{r widelong, results = "asis"}
-yrs <- 1:45
-ages <- 1:15
-widelong <- matrix(round(rnorm(length(yrs) * length(ages), 20), 4),
-  nr = length(yrs),
-  nc = length(ages),
-  dimnames = list(year = yrs, age = ages))
-widelong_df <- data.frame(cbind(yrs, widelong))
+### In situ Chlorophyll-a concentration
 
-csasdown::csas_table(widelong_df,
-  col.names = c("Year", as.character(ages)),
-  caption = "A long and wide table",
-  format = "latex",
-  bold_header = FALSE,
-  font_size = 8)
-```
-\end{landscapepage}
-\clearpage
+Phytoplankton biomass is represented by the concentration of its main pigment, chl-a, which was measured using Turner fluorometry (Yentsch and Menzel 1963). Details of the protocol and method can be found in Mitchell et al. (2002). In brief, two replicates of 100 ml aliquots of seawater were drawn from each sampling depth and filtered via vacuum filtration (PSI < 10) onto 25 mm glass fiber filters (GF/F). The GF/Fs were immediately deposited into separate scintillation vials containing 10 ml of 90% acetone, which were kept at -20 °C for at least 24 hours to ensure extraction of all the chl-a pigments. Following the extraction period, the aliquots were warmed to room temperature and transferred into fluorometer cuvettes (glass test tubes). The extracts were exposed to blue light (excitation wavelengths) in the fluorometer, which leads them to emit red light. This red light is detected and quantified by a photomultiplier (Holm-Hansen et al. 1965). Chloropigments other than chl-a (e.g., chlorophyll-b, chlorophyll-c1, -c2, and -c3) can contribute to the overall fluorescence signal, but their contribution is generally minor. Chl-a degradation products (a-type phaeopigments associated with senescent phytoplankton or zooplankton fecal pellets) may sometimes be present in a sample and contribute to the fluorescent signal. To account for their contribution, after taking the first fluorescence measurement, samples were acidified, which converts chl-a into phaeophytin-a. A conversion factor was then applied to retrieve the concentrations of both the chl-a and a-type phaeopigments (Welschmeyer 1994).  
 
-It is often useful to group certain rows of a table that share the same information. This can be achieved using the `kableExtra::collapse_rows` and `kableExtra::group_rows` and `kableExtra::pack_rows`.
+### Satellite-derived Chlorophyll-a concentration
+
+In addition to in situ measurements, chl-a concentrations were derived using satellite ocean colour. This mode of observation provides information on phytoplankton biomass at synoptic scales and daily frequency (assuming clear skies). These satellite-derived data are used to complement the in-situ observations by providing context to the seagoing missions, including a suite of metrics to characterize the phytoplankton spring bloom (see section 4.12). Satellite data presented in this document are retrieved using the MODerate Resolution Imaging Spectroradiometer (MODIS) on the Aqua platform launched by the National Aeronautic Space Administration (NASA) in 2002. While NASA has launched several satellites since 1998, in this report only data from the MODIS sensor are presented in order to have a consistent and climate-compatible time series of chl-a concentrations that is free of satellite inter-calibration issues. MODIS is the satellite with the longest continuous time series—the first full year of data was 2003 and it is still operating.  
+For this report, global daily level-3 binned data at 4 km resolution were downloaded from NASA Ocean Biology Processing Group and data were extracted for the three regions of interest, namely, Hamilton Bank (HB, -55.7°E to -53.7°E and 53.6°N to 55.5°N), the Central Labrador Sea (CLS, -53.7°E to -48.8°E and 55.5°N to 60.1°N), and the Greenland Shelf (GS, -48.8°E to -48.1°E and 60.1°N to 60.7°N) (Figure 1). Remote sensing reflectances were used to generate POLY4 chl-a (Clay et al, 2019), a modified version of the band ratio model OCx (O’Reilly et al, 1998) with regionally-tuned coefficients to correct a bias observed in the Northwest Atlantic. Mapped POLY4 data for the Northwest Atlantic are available online, hosted by CIOOS Atlantic (https://cioosatlantic.ca/erddap/info/bio_remote_sensing_modis_aqua_chl_poly4/index.html).  
+
+### Mesozooplankton
+
+Mesozooplankton were collected using vertical net hauls in the upper 100 m, where 95% of the biomass in spring-summer occurs (Astthorsson and Gislason 2003), using a 0.75 m diameter ring net fitted with a 200 $\mu$m mesh size and 0.5 m diameter ring net with a 76 $\mu$m mesh size. The cod-end was attached via a clamp to a weighted hydro-wire and the towing bridle was attached to a crossbow mounted on the wire, at a height above the cod-end such that the net was held vertically. In this configuration, zooplankton were only collected as the net was towed upwards. The towing speed was about 0.5 m s-1 and the volume of water sampled was assumed to be the volume of the cylinder sampled by the net, until 2010, when the filtered volumes started to be measured using a Danemark K/C flowmeter. The flowmeter was equipped with a back-spin pin, to prevent the impeller from spinning during the descent of the net, so that it only measured flow during the ascent. Samples were preserved in 2% formalin. For C. finmarchicus, C. hyperboreus, and C. glacialis, specimens were identified and enumerated to the level of species and stage, and size-frequency distributions of sizes-at-stage were constructed for all stages at each station. Other taxa were identified to the level of species (sometimes to stage), genus, or group, depending on their abundance in the samples. Meaningful abundances were obtained when a minimum of 300 organisms, and a minimum of 200 Calanus spp., were counted to allow assessment of community structure and Calanus population growth/development, respectively.  
+
+## Computational methods
+
+### Spatio-temporal binning
+
+All data are aggregated following a spatio-temporal scheme to summarise the information in simple metrics. For the biogeochemical data, three main regions are considered (Figure 1), the 1) Hamilton Bank (HB), located on the Labrador Shelf, 2) the Central Labrador Sea and 3) the Greenland Shelf.  
+
+All nutrients and chl-a concentrations were integrated over selected depth ranges, namely, chl-a from 0 to 100 m, surface nutrients from 0 to 100 m and deep nutrients from the first depth below 100 m to bottom. Temperatures were averaged from 0 to 100 m. Zooplankton values correspond to the integrated abundances in the water column (0–100 m) since collection was carried out using vertical net tows. (See Section 4.9.) . Following the vertical binning, the data were averaged by region and year.  
+
+### Time series
+
+AZOMP sampling period is dictated by the Canadian Coast Guard operational needs and ship availability, which has been challenging since the late 2010’s due to mechanical issues with the research vessel CCGS Hudson. From 2008 to 2018 (except 2013), AZOMP missions have started slightly early each year, with about 25 days difference over the entire period (Figure 2). The timing of the mission has been very variable since 2019 with the chartering of oceanographic vessels to conduct the mission. In addition, the COVID pandemic in 2020 prevented the chartering of foreign vessels and the mission was only possible on the CCGS Amundsen at a later date in July – August (Table 1). As a result, measurements collected during that mission were not included in the analysis to avoid possible bias.  
+
+### Scorecards
+
+Annual anomalies for temperature, surface and deep nutrients, chl-a concentration, mesozooplankton abundance, and satellite ocean colour metrics were calculated as the deviation of an individual year from the mean of the annual estimates over a reference period (1999-2010 for mesozooplankton and 1999–2020 for the remaining in situ data, and 2003-2020 for satellite data), and expressed as normalized quantities (i.e., by dividing by the standard deviation of the annual estimates over the same period):
+
+\begin{equation}
+A_{y} = (M_{y} - M_{r}) / \sigma_{r}
+\label{eq:anomaly}
+\end{equation}
+
+where $A_y$ is the anomaly for a given property in a given year (y) and region, $M_y$ is the annual mean, $M_r$ is the reference period mean and $\sigma_r$ is the standard deviation for the reference period. This method was selected because it provides good estimates of anomalies and trends for data with large gradients and gaps (Jones and Hulme 1995).  
+
+### Spring bloom metrics
+
+Metrics were derived from satellite chl-a using the PhytoFit R shiny app (https://cioosatlantic.ca/phytofit). Data were log10-transformed to allow better modelling of the exponential increase in chl-a at the initiation of the bloom. Daily averages and standard deviations were calculated within each Labrador Sea polygon, filtering pixels outside ±3standard deviations from the mean. Days with less than 20% coverage were excluded from the time series, and the remaining points were smoothed using the LOESS method (locally-estimated scatterplot smoothing) as implemented in R  (loess() function) with a span window of 0.2 (a parameter that controls the degree of smoothing) and weighted by percent coverage. A symmetric shifted Gaussian was fitted to the smoothed points with nonlinear least squares regression using the nlsLM() function of the minpack.lm package in R, and the chl-a baseline was allowed to vary linearly as a function of time. The Gaussian fits were restricted to days 85 to 299, and the day of initiation and day of maximum concentration were restricted to day ranges 85-226 and 108-247, respectively to avoid classification of small early peaks of the spring bloom.  
+
+In previous reports, the spring bloom metrics relied mainly on the Gaussian fit (the timing of the start of the bloom, the duration, peak concentration during the bloom period, and “magnitude” or total chl-a produced during the bloom period), which were subject to high variability in chl-a concentration and low data coverage, particularly in the north early in the year. This resulted in an absence of model fits, or problematic fits that may not have accurately captured the interannual anomalies in each region. To reduce the impact of these bad fits on the scorecards, and retrieve information about bloom timing and intensity, a new set of a metrics were recently proposed: spring bloom peak timing and fall bloom initiation, and “seasonal” averages, where the season boundaries are region-specific and based on the climatology of the spring and fall bloom periods observed over the time series (Blais et al., in prep). While the spring metrics are still derived from a Gaussian fit, we now report on the peak of the curve instead of its initiation, as it does not require a subjective threshold (i.e., percentage of maximum chl-a) and it remains robust to small variation in chl-a early in spring. All fits were visually inspected to ensure that the bloom peak timing was accurately captured by the model, and the input parameters were adjusted if necessary.  
+
+The fall bloom period is less predictable than the spring bloom as it signal is not as large as in the spring and satellite data are more sparse due to cloud cover. Rather than a Gaussian model,  a threshold method was used to determine the start of the bloom as the day of year when chl-a concentration surpasses 105% of the annual median and remains above  this threshold for 14 consecutive days (Layton et al, 2021). In this case we used the LOESS-smoothed data spanning between day of year 151 and 365 with the initiation occurring between day of year 151 to 270. The timing of the fall bloom initiation was reported rather than the peak, as the peak may occur late in the year when data coverage is poor. Annual times series at daily resolution and the corresponding spring Gaussian and fall threshold fits are available at github.com/BIO-RSG/PhytoFit/blob/master/verified_fits.  
+
+The mean chl-a for the spring and fall was calculated as an average of the daily chl-a concentrations during the two periods mentioned above, weighted by percent coverage. Note that in this calculation, daily chl-a concentrations correspond to the averages calculated using absolute (i.e. not log-transformed) values within the polygons, after filtering outlying pixels. Data coverage is very sparse or non-existent in the Labrador Sea from November to January (see Figure A1). Days with valid data that have low coverage (<20%), a common occurrence early or late in the year, might not be representative of the overall conditions. Sea ice also impacts the quality of the data and may introduce artifacts close to the ice edge (Bélanger et al., 2007). Although weighting points by percent coverage lessens the impact of low data coverage, extra caution must be used when interpreting results in late fall or winter due to these issues.  
+
+### Access to Data Products
+
+Data products presented in the figures of this document are published on the Government of Canada’s Open website; a link to the data is available on request to the corresponding author. The bloom metrics estimated from satellite ocean colour data in each of the three regions presented in Figure 9 are available in the github repository for the PhytoFit app (https://github.com/BIO-RSG/PhytoFit/tree/master/verified_fits). All the chemical data are available at Ocean Carbon Data System (OCADS).  

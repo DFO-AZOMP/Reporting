@@ -1,81 +1,13 @@
 # Introduction {#sec:introduction}
 
-<!-- An example of how to include text based on the language. The two chunks below shows how switching the toggle in the YAML header for french allows inclusion/rejection of a paragraph. -->
+The Labrador Sea is a deep basin nested between Labrador and Greenland with a cyclonic circulation pattern that leads to the mixing of Arctic and North Atlantic waters. The Baffin Island and Labrador currents transport cold and less-saline Arctic water southward along the Canadian coast (Wang et al. 2016). On the eastern side, the West Greenland Current brings warmer, more-saline waters northward, along the Greenland coast into the Baffin Bay, where it meets the Labrador Current. (See Lozier et al. 2019 and Yashayaev et al. 2017 for a detailed description of the Labrador Sea circulation.) By the end of winter, the cooling of the upper layer results in an increase of surface density, enabling wind-driven mixing to reach great depths (1500 to 2000 m), thus ventilating the deeper ocean with atmospheric gases while pumping nutrients from the deep waters to the surface. The intensity of this phenomenon varies with environmental factors, including atmospheric forcing, freshwater runoff from adjacent glaciers, precipitation, intrusion of warm and saline inflow from the adjacent North Atlantic, and intrusion of cold and fresh water from the Arctic Ocean. In turn, this deep mixing strongly impacts heat flux, stratification, and by extension, the chemical balance and biological productivity of the Labrador Sea. Consequently, changes in the physical and chemical environment of the aphotic zone influence both plankton community composition and annual biological production cycles, including fish and higher trophic levels.  
 
-```{r para-chap01-1-en, eval=!fr(), results = 'asis'}
-cat("Welcome to report generation using `csasdown`. Included in this example document are many useful bits of information on how to write a reproducible report document using  the `csasdown` package, which is based on [Rmarkdown](https://rmarkdown.rstudio.com/) and [Bookdown](https://bookdown.org/). The information given in this example document should be used with all three `csasdown` document types: Research Document (`resdoc`), Science Response (`sr`), and Technical Report (`techreport`).")
-```
+About one quarter of carbon dioxide (CO2) released by human activities is taken up by the oceans (Sabine et al. 2004), altering ocean chemistry, and correspondingly, the marine carbonate system. The Labrador Sea hosts a strong “solubility pump”, whereby anthropogenic CO2 sequestrated from the atmosphere is transported to the deep ocean through chemical and physical processes. The dissolution of anthropogenic CO2 has decreased ocean pH by 0.1 units over the past 200 years, resulting in a 30% increase in acidity (Caldeira and Wickett 2003). If global emissions of CO2 remain at their present rate, ocean pH is predicted to drop by an additional 0.3 units by 2100. The oceans have not experienced such a rapid pH decrease (ocean acidification), or one of such a high magnitude, for at least 20 million years (Feely et al. 2004), raising serious concerns about the ability of marine ecosystems to adapt. The major impact of decreasing pH will be felt by organisms that form calcium carbonate (CaCO3) shells and skeletons, because rising acidity increases the solubility of CaCO3. Since CaCO3 shells and skeletons are naturally more soluble at lower temperatures and higher pressures, high latitudes and deep water ecosystems, such as the one encountered in the Labrador Sea, are more vulnerable to the added stress of ocean acidification than those at intermediate latitudes. Furthermore, rapid environmental changes, such as receding sea-ice extent and enhanced hydrological cycles, may amplify these problems. Inert halogenated trace gases of anthropogenic origin that have accumulated in the atmosphere, such as the chlorofluorocarbons (CFCs) and sulfur hexafluoride (SF6), are used to study ventilation and transport processes in the ocean. In recent decades, they have been used to calculate Transient Tracer Distribution (TTD) to estimate the transit time of water masses and anthropogenic CO2 in the water (Haine and Hall 2002; Hall et al. 2002).  
 
-```{r para-chap01-1-fr, eval=fr(), results = 'asis', needs_trans = FALSE}
-cat("(This is where you would place the French translation of the paragraph. Once you do, set needs_trans to FALSE in the chunk header) Bienvenue dans la génération de rapports à l'aide de `csasdown`. Ce document d'exemple contient de nombreuses informations utiles sur la façon d'écrire un rapport reproductible à l'aide du paquetage `csasdown`, qui est basé sur [Rmarkdown] (https://rmarkdown.rstudio.com/) et [Bookdown] (https://bookdown.org/). Les informations données dans cet exemple doivent être utilisées avec les trois types de documents `csasdown` : Document de recherche (`resdoc`), Réponse scientifique (`sr`), et Rapport technique (`techreport`).
+Since 1990, as part of the World Ocean Circulation Experiment (WOCE), the Ocean and Ecosystem Sciences Division (OESD) at the Bedford Institute of Oceanography (BIO) has carried out an annual occupation, usually in the spring, of the AR7W (Atlantic Repeat Hydrography Line 7 West) oceanographic section across the Labrador Sea (Figure 1). Soon after its inception, the program morphed into Fisheries and Oceans Canada (DFO) Atlantic Zone Off-shelf Monitoring Program (AZOMP), following the OESD’s overarching objectives to: 1) characterize and understand the causes of ocean variability at seasonal, inter-annual, and inter-decadal scales; 2) provide adequate data to monitor the health of the marine ecosystem and support decision-making based on scientific evidence; and 3) to build historical databases to address future issues. The program also contributes to the international Global Climate Observing System (GCOS) and the Climate Variability (CLIVAR) component of the World Climate Research Program (WCRP) and it reports annually with an environmental synopsis to the Northwest Atlantic Fisheries Organization (NAFO).  
 
-Traduit avec www.DeepL.com/Translator (version gratuite)")
-```
+The AR7W section spans approximately 900 km across the southern edge of the Labrador Sea, from the Labrador Shelf (near 53°N) to the Greenland Shelf (near 61°N) (Figure 1). The annual AZOMP multidisciplinary survey of the Labrador Sea primarily consists of AR7W occupations and deployments/recoveries of moorings and Argo floats. The ideal timing of the mission in May aims to capture the fading winter-deep-convection signal and the beginning of the phytoplankton bloom and productivity season, while avoiding possible sea-ice on the Labrador Shelf early in the spring. Sampling the peak of the spring bloom is uncertain given its large inter-annual variability in timing, duration and spatial extent, however, early cruise dates in recent decades have captured its initiation with the exception of the 2021 mission, which occurred in July-August under nutrient-limited conditions (Table 1, Figure 2). With nearly three decades of measurements, the time series allows examination of decadal trends in all key ecosystem variables (i.e, temperature, nutrients, plankton biomass and abundance).  
 
-```{r para-chap02-1-en, eval=!fr(), results = 'asis'}
-cat("
-If you get stuck on anything, read the `csasdown` [README](https://github.com/pbs-assess/csasdown/blob/master/README.md) carefully and all the [Wiki pages](https://github.com/pbs-assess/csasdown/wiki). There are many tips and tricks located in those pages. 
+The AR7W transect crosses two productive shelves (Labrador and Greenland Shelves) and the Central Labrador Sea, where phytoplankton production is subject to local forcing (eddies, mixing-stratification) that drive phytoplankton biomass and community structure. In the Central Labrador Sea, light limits primary production for most of the year (Harrison and Li 2008; Fragoso et al. 2016), while a shallow mixed layer and relatively low nitrate concentration limit phytoplankton growth on the Labrador Shelf following the spring bloom. Phytoplankton growth, in particular diatoms,  also seemed to be limited by availability of silicate in the Central Labrador Sea (Harrison and Li 2008). These conditions support the emergence of small flagellates such as Phaeocystis pouchetii in the northern and eastern region of the Labrador Sea, which can form large blooms under favorable conditions (Fragoso et al. 2016). In recent years, large blooms of Phaeocystis sp. have also been observed in the western part of the Central Labrador Sea (Devred et al. 2024). The Labrador Shelf, influenced by Arctic waters, is dominated by polar diatom species (Thalassiosira spp., Chaetoceros spp.,  and Bacteriosira bathyomphala) and species associated with sea-ice (Porosira glacialis and Fossula arctica). Primary production patterns and mesoscale features leave their imprint on the mesozooplankton distribution and abundance (Yebra et al. 2009). One species of copepod, Calanus finmarchicus, dominates the mesozooplankton biomass throughout the central region of the Labrador Sea, while on the shelves, two Arctic Calanus species, C. glacialis and C. hyperboreus, are equally important (Head et al. 2003). C. finmarchicus abundance shows regional variations that are generally consistent from year-to-year and are related to differences in the timing of life-cycle events, which are influenced by environmental conditions, including spring bloom dynamics.  
 
-Inserting a hyperlink in Rmarkdown is easy, just look at the code for the paragraph above. It is located in **01_introduction.Rmd**
-
-Include references in the **bib/refs.bib** file in the same format as the example that is already in the file. This is called *BiBLaTeX* format. Once you have added the reference, you can cite it using Rmarkdown in the following ways:
-
-1. In parentheses: `[@edwards2013]` - renders as: [@edwards2013]
-2. Inline: `@edwards2013` - renders as: @edwards2013
-3. Without author: `[-@edwards2013]` - renders as: [-@edwards2013]
-
-Some references: [@francis2011, @edwards2013, @swainbenoit2015].
-
-Note that the year part of the citation is clickable and will take you directly to the reference in the References section.
-
-Here is an example equation with the code used to generate it. Note that `csasdown` automatically numbers it on the right-hand side of the page. It does this consecutively throughout the document sections, but appendices are each numbered on their own, e.g. A.1, A.2, ... for Appendix A, and B.1, B.2, ... for Appendix B.")
-```
-
-```{r para-chap02-1-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
-<<para-chap02-1-en>>
-```
-
-````
-\begin{equation}
-  1 + 1
-  \label{eq:test}
-\end{equation}
-````
-
-\begin{equation}
-  1 + 1
-  \label{eq:test}
-\end{equation}
-
-A reference can be included anywhere in the text, to refer to a section or appendix. For the first appendix in this document, the code looks like this: `\@ref(app:first-appendix)`. Adding that code inline will create a clickable link in the output file: See Appendix \@ref(app:first-appendix).
-
-The code inside the parentheses comes from the tag after the header for the section. For the appendix, the whole header line looks like:
-
-`# THE FIRST APPENDIX {#app:first-appendix}`
-
-Everything in the curly braces except for the hash sign is the tag you use to reference a section.
-
-This section's header line looks like this:
-
-`# Introduction {#sec:introduction}`
-
-And can be referenced like this: `\@ref(sec:introduction)` which renders to this: Section \@ref(sec:introduction).
-
-A reference to the equation above looks like this: `\@ref(eq:test)` and renders to this: Figure \@ref(eq:test). The labels for any type of reference (except for bibliography citations) are shown in Table \@ref(tab:ref-tab).
-
-```{r ref-tab}
-refs_tab <- tribble(
-     ~`Reference type`,                    ~`Rmarkdown code`,
-             "Section",        "`\\@ref(sec:section-label)`",
-          "Subsection",  "`\\@ref(subsec:subsection-label)`",
-            "Appendix",       "`\\@ref(app:appendix-label)`",
-            "Equation",        "`\\@ref(eq:equation-label)`",
-              "Figure",         "`\\@ref(fig:figure-label)`",
-               "Table",          "`\\@ref(tab:table-label)`")
-
-csasdown::csas_table(refs_tab,
-  align = c("r", "r"),
-  caption = ifelse(fr(),
-                   "French goes here",
-                   "Reference types and their Rmarkdown reference codes."))
-```
+This report describes the biogeochemical state of the Labrador Sea between spring 2019 and spring 2023. Data presented in this report come from: 1) annual surveys carried out over 2-week periods, typically between early May and early June, however, due to the unavailability and subsequent decommissioning of CCGS Hudson,  the timing of the surveys in 2020 occurred in summer between late July and early August and there was no mission in 2021 (Table 1) ; and 2) satellite remote-sensing of daily observations of ocean colour converted into chlorophyll-a (chl-a) concentration.  
