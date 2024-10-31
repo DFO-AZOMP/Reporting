@@ -23,7 +23,7 @@ knitr::include_graphics("figures/TIC_pH.png")
 ```
 
 
-(ref:CFC12SF6) Annual mean concentrations of CFC-12 (blue solid triangles) and SF6 (red solid triangles) in Newly-Ventilated Labrador Sea Water defined as 150–500 m in the Central Labrador Sea from 1991 to 2023. Vertical bars indicate one standard deviation.  
+(ref:CFC12SF6) Annual mean concentrations of CFC-12 (blue solid triangles) and $SF_6$ (red solid triangles) in Newly-Ventilated Labrador Sea Water defined as 150–500 m in the Central Labrador Sea from 1991 to 2023. Vertical bars indicate one standard deviation.  
 
 ```{r CFC12SF6, fig.pos="H", fig.cap = "(ref:CFC12SF6)"}
 knitr::include_graphics("figures/CFC12_SF6.png")
@@ -51,7 +51,14 @@ knitr::include_graphics("figures/Scorecard_LabSea_time_series_NutrientsDeep_1997
 ```
 
 
-(ref:scorecardoceancolor) Scorecards for the seasonal chl-a metrics (timing is the day of year, and averages are measured in mg m-3) from 2003 to 2023 for the HB, CLS, and GS polygons. Grey boxes indicate no data. Numbers within cells represent the annual standardized anomalies. Numbers on the right side indicate the mean values 2003–2020 (i.e., reference) for a given region as well as the standard deviation (i.e., mean ± standard deviation).   
+(ref:scorecardchla) Scorecards for in situ chl-a from 1997 to 2023 for the HB, CLS, and GS. Grey boxes indicate no data or late sampling years (not included in the reference period average). Numbers within cells represent the annual standardized anomalies. Numbers on the right side indicate the mean values 1999–2020 (i.e., reference) for a given region as well as the standard deviation (i.e., mean ± standard deviation).   
+
+```{r scorecardchla, fig.pos="H", fig.cap = "(ref:scorecardchla)"}
+knitr::include_graphics("figures/Scorecard_LabSea_time_series_Chla_1997-2023_ref1997-2020.png")
+```
+
+
+(ref:scorecardoceancolor) Scorecards for the seasonal chl-a metrics (timing is the day of year, and averages are measured in $mg~m^{-3}$) from 2003 to 2023 for the HB, CLS, and GS polygons. Grey boxes indicate no data. Numbers within cells represent the annual standardized anomalies. Numbers on the right side indicate the mean values 2003–2020 (i.e., reference) for a given region as well as the standard deviation (i.e., mean ± standard deviation).   
 
 ```{r scorecardoceancolor, fig.pos="H", fig.cap = "(ref:scorecardoceancolor)"}
 knitr::include_graphics("figures/Scorecard_LabSea_time_series_Ocean_Color_2003-2023_ref2003-2020_ForRegionalDoc.png")
