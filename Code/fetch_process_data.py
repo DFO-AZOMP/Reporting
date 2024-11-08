@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
 import sys
-import warnings
 
 import pandas as pd
 import argopy
