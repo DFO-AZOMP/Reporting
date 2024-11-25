@@ -6,7 +6,7 @@ df = pd.read_csv('../Data/argo_physical_means.csv').drop('Unnamed: 0', axis=1)
 df['date'] = df.date.apply(pd.Timestamp)
 
 # anomaly baseline - less than or including this year
-clim_year = 2010
+clim_year = 2020
 
 # var names lists to loop through
 phy_vars = ['TEMP', 'PSAL', 'SA', 'SIG0']
