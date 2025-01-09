@@ -9,7 +9,7 @@ The 0–100 m abundances of several mesozooplankton taxa followed a pattern simi
 
 # Acknowledgements
 
-The authors thank the sea-going staff of the Bedford Institute of Oceanography and the officers and crew of the Canadian Coast Guard ships Amundsen and Captain Jacques Cartier as well as the UNOLS research vessel Atlantis. Jay Barthelotte, Robert Benjamin, Jay Bugden, Diana Cardoso, Carla Caverhill, Darlene Childs Terry Cormier, Melissa Falkner, Jennifer Field, Pascal Guillot, Adam Hartling, Dave Hebert, Flo Hum, Jeff Jackson, Matt Lawson, Chantelle Layton, Dave Levy, Richard Nelson, Kevin MacIsaac, Kevin Pauley, Tim Perry, Cathy Porter, Steve Punshon, Maddison Proudfoot, Peter Thamer Christiane Theriault, Mike Vining and Kristen Wilson contributed to sample collection, sample analysis, data analysis, data management, and data sharing.
+The authors thank the sea-going staff of the Bedford Institute of Oceanography and the officers and crew of the Canadian Coast Guard ships Amundsen and Captain Jacques Cartier as well as the UNOLS research vessel Atlantis. Jay Barthelotte, Robert Benjamin, Jay Bugden, Diana Cardoso, Carla Caverhill, Darlene Childs Terry Cormier, Melissa Falkner, Jennifer Field, Pascal Guillot, Adam Hartling, Dave Hebert, Flo Hum, Jeff Jackson, Matt Lawson, Chantelle Layton, Dave Levy, Richard Nelson, Kevin MacIsaac, Kevin Pauley, Tim Perry, Cathy Porter, Steve Punshon, Maddison Proudfoot, Peter Thamer Christiane Theriault, Mike Vining and Kristen Wilson contributed to sample collection, sample analysis, data analysis, data management, and data sharing.  
 
 
 \clearpage

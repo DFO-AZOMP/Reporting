@@ -12,7 +12,7 @@ After that, all subsequent sections will be turned into appendices. -->
 (ref:AZOMPseasonbounds) Time series of daily average concentrations within each Labrador Sea polygon over the climatological period (2003-2020). Grey shaded areas indicate the spring and fall bloom periods. White areas indicate the winter and summer periods. Red circles corresponds to daily data coverage of less than 20% of a polygon. Days of the year marking the transition from winter to spring, spring to summer, and summer to fall are 107, 197, and 254 (Hamilton Bank), 102, 223, and 238 (Central Labrador Sea), and 99, 175, and 203 (Greenland Shelf).  
 
 ```{r AZOMPseasonbounds, fig.pos="H", fig.cap = "(ref:AZOMPseasonbounds)"}
-knitr::include_graphics("../Figures/AZOMP_polygon_season_bounds.png")
+knitr::include_graphics("../Figures/AZOMP_polygon_season_bounds_MODIS.png")
 ```
 
 

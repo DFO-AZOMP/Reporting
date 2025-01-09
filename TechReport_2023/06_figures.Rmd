@@ -37,6 +37,7 @@ knitr::include_graphics("figures/Scorecard_LabSea_time_series_Temperature_1997-2
 ```
 
 
+
 (ref:scorecardnutrientsshallow) Scorecards for surface nutrients from 1997 to 2023 for the HB, CLS, and GS polygons. Grey boxes indicate no data or late sampling years (not included in the reference period average). Numbers in the scorecards’ cells represent the annual standardized anomalies. Numbers on the right side indicate the mean values 1999–2020 (i.e., reference) for a given region as well as the standard deviation (i.e., mean ± standard deviation).   
 
 ```{r scorecardnutrientsshallow, fig.pos="H", fig.cap = "(ref:scorecardnutrientsshallow)"}
@@ -51,11 +52,13 @@ knitr::include_graphics("figures/Scorecard_LabSea_time_series_NutrientsDeep_1997
 ```
 
 
+
 (ref:scorecardchla) Scorecards for in situ chl-a from 1997 to 2023 for the HB, CLS, and GS. Grey boxes indicate no data or late sampling years (not included in the reference period average). Numbers within cells represent the annual standardized anomalies. Numbers on the right side indicate the mean values 1999–2020 (i.e., reference) for a given region as well as the standard deviation (i.e., mean ± standard deviation).   
 
 ```{r scorecardchla, fig.pos="H", fig.cap = "(ref:scorecardchla)"}
 knitr::include_graphics("figures/Scorecard_LabSea_time_series_Chla_1997-2023_ref1997-2020.png")
 ```
+
 
 
 (ref:scorecardoceancolor) Scorecards for the seasonal chl-a metrics (timing is the day of year, and averages are measured in $mg~m^{-3}$) from 2003 to 2023 for the HB, CLS, and GS polygons. Grey boxes indicate no data. Numbers within cells represent the annual standardized anomalies. Numbers on the right side indicate the mean values 2003–2020 (i.e., reference) for a given region as well as the standard deviation (i.e., mean ± standard deviation).   
@@ -67,8 +70,28 @@ knitr::include_graphics("figures/Scorecard_LabSea_time_series_Ocean_Color_2003-2
 
 
 
+(ref:scorecardcalanus) Calanus finmarchicus abundances from 1997 to 2023 for HB, CLS, and GS expressed as normalized anomalies (dimensionless) based on 1999–2020 reference period. The bottom panel shows the Population Development Index (PDI) calculated as the sum abundance of copepodite C1-C3 * 100 and divided by the sum of all developmental stages. Numbers on the right side indicate the mean values 1999–2020 (i.e., reference period) for a given region as well as the standard deviation (i.e., mean ± standard deviation). Grey cells indicate anomalies were omitted due to late sampling or that no sampling occurred that year due to lack of vessel (2017, 2021).  
 
 
+```{r scorecardcalanus, fig.pos="H", fig.cap = "(ref:scorecardcalanus)"}
+knitr::include_graphics("figures/Scorecard_LabSea_time_series_CfinPDI_1995-2023_ref1999-2020.png")
+```
 
+(ref:scorecardglachyper) Calanus glacialis (top panel) and Calanus hyperboreus (bottom panel) abundances from 1997 to 2023 for HB, CLS, and GS expressed as normalized anomalies (dimensionless) based on 1999–2020 reference period. Numbers on the right side indicate the mean values 1999–2020 (i.e., reference period) for a given region as well as the standard deviation (i.e., mean ± standard deviation). Grey cells indicate anomalies were omitted due to late sampling or that no sampling occurred that year due to lack of vessel (2017, 2021).    
 
+```{r scorecardglachyper, fig.pos="H", fig.cap = "(ref:scorecardglachyper)"}
+knitr::include_graphics("figures/Scorecard_LabSea_time_series_CglacChyper_1995-2023_ref1999-2020.png")
+```
+
+(ref:scorecardpseudo) Pseudocalanus spp. (top panel) and Oithona spp. (bottom panel) abundances from 1997 to 2023 for HB, CLS, and GS expressed as normalized anomalies (dimensionless) based on 1999–2020 reference period. Numbers on the right side indicate the mean values 1999–2020 (i.e., reference period) for a given region as well as the standard deviation (i.e., mean ± standard deviation). Grey cells indicate anomalies were omitted due to late sampling or that no sampling occurred that year due to lack of vessel (2017, 2021).    
+
+```{r scorecardpseudo, fig.pos="H", fig.cap = "(ref:scorecardpseudo)"}
+knitr::include_graphics("figures/Scorecard_LabSea_time_series_PseudoOith_1995-2023_ref1999-2020.png")
+```
+
+(ref:scorecardeuph) Euphausiid (top panel) and Amphipoda (bottom panel) abundances from 1997 to 2023 for the HB, CLS, and GS expressed as normalized anomalies (dimensionless) based on 1999–2020 reference period. Numbers on the right side indicate the mean values 1999–2020 (i.e., reference period) for a given region as well as the standard deviation (i.e., mean ± standard deviation). Grey cells indicate anomalies were omitted due to late sampling or that no sampling occurred that year due to lack of vessel (2017, 2021).    
+
+```{r scorecardeuph, fig.pos="H", fig.cap = "(ref:scorecardeuph)"}
+knitr::include_graphics("figures/Scorecard_LabSea_time_series_EuphAmph_1995-2023_ref1999-2020.png")
+```
 
