@@ -1,11 +1,23 @@
 
 import pandas as pd
+import shapely
 import seaborn as sns
 sns.set_theme(context='paper', style='ticks', palette='colorblind', rc={'xtick.minor.visible':True})
 import matplotlib.pyplot as plt
 
 df = pd.read_csv('../Data/argo_physical_means_anomalies.csv').drop('Unnamed: 0', axis=1)
 df['date'] = df.date.apply(pd.Timestamp)
+
+# load polygon to select data withing
+poly = pd.read_csv('../Data/polygon_3300m.csv')
+# shapely polygon
+polygon = shapely.geometry.Polygon(poly)
+
+# points within polygon
+df = df.loc[[polygon.contains(shapely.geometry.Point(x, y)) for x,y in zip(df.longitude, df.latitude)]]
+df = df.loc[[f.split('.')[0][-1] != 'D' for f in df.file]]
+df = df.reset_index().drop('index', axis=1)
+
 
 # anomaly baseline - less than or including this year
 clim_year = 2020
