@@ -27,6 +27,27 @@ extent  = [-67, -42, 54.5, 63]
 phy_vars = ['TEMP', 'PSAL', 'SA', 'SIG0']
 cmaps = [cmo.cm.thermal, cmo.cm.haline, cmo.cm.haline, cmo.cm.dense]
 depth_ranges = [(0, 50), (100, 500), (500, 1000), (1000, 2000)]
+# definition of seasons
+season_months = {'year':list(range(1,13)), 'spring':[3, 4, 5], 'summer':[6, 7, 8], 'autumn':[9, 10, 11], 'winter':[12, 1, 2]}
+# variable, units, title, colorscales, etc
+varinfo = {
+    'TEMP_0-50dbar':{'vmin':0.2, 'vmax':8.1, 'delta':4.4, 'unit':f' ({chr(176)}C)', 'label':'T', 'title':'Temperature'},
+    'TEMP_100-500dbar':{'vmin':3.1, 'vmax':5.25, 'delta':1.8, 'unit':f' ({chr(176)}C)', 'label':'T', 'title':'Temperature'},
+    'TEMP_500-1000dbar':{'vmin':3.4, 'vmax':4.5, 'delta':0.35, 'unit':f' ({chr(176)}C)', 'label':'T', 'title':'Temperature'},
+    'TEMP_1000-2000dbar':{'vmin':3.35, 'vmax':3.7, 'delta':0.25, 'unit':f' ({chr(176)}C)', 'label':'T', 'title':'Temperature'},
+    'PSAL_0-50dbar':{'vmin':31.9, 'vmax':35.0, 'delta':2.1, 'unit':'', 'label':'PSAL', 'title':'Practical Salinity'},
+    'PSAL_100-500dbar':{'vmin':34.65, 'vmax':35.0, 'delta':0.105, 'unit':'', 'label':'PSAL', 'title':'Practical Salinity'},
+    'PSAL_500-1000dbar':{'vmin':34.815, 'vmax':34.925, 'delta':0.07, 'unit':'', 'label':'PSAL', 'title':'Practical Salinity'},
+    'PSAL_1000-2000dbar':{'vmin':34.86, 'vmax':34.92, 'delta':0.025, 'unit':'', 'label':'PSAL', 'title':'Practical Salinity'},
+    'SA_0-50dbar':{'vmin':32.5, 'vmax':35.3, 'delta':2.1, 'unit':' (g kg$^{-1}$)', 'label':'Abs. Salinity', 'title':'Absolute Salinity'},
+    'SA_100-500dbar':{'vmin':34.85, 'vmax':35.15, 'delta':0.105, 'unit':' (g kg$^{-1}$)', 'label':'Abs. Salinity', 'title':'Absolute Salinity'},
+    'SA_500-1000dbar':{'vmin':35.00, 'vmax':35.09, 'delta':0.08, 'unit':' (g kg$^{-1}$)', 'label':'Abs. Salinity', 'title':'Absolute Salinity'},
+    'SA_1000-2000dbar':{'vmin':35.035, 'vmax':35.08, 'delta':0.025, 'unit':' (g kg$^{-1}$)', 'label':'Abs. Salinity', 'title':'Absolute Salinity'},
+    'SIG0_0-50dbar':{'vmin':25.9, 'vmax':27.8, 'delta':1.5, 'unit':' (kg L$^{-1}$)', 'label':'$\sigma_0$', 'title':'Potential Density'},
+    'SIG0_100-500dbar':{'vmin':27.49, 'vmax':27.69, 'delta':0.14, 'unit':' (kg L$^{-1}$)', 'label':'$\sigma_0$', 'title':'Potential Density'},
+    'SIG0_500-1000dbar':{'vmin':27.67, 'vmax':27.74, 'delta':0.06, 'unit':' (kg L$^{-1}$)', 'label':'$\sigma_0$', 'title':'Potential Density'},
+    'SIG0_1000-2000dbar':{'vmin':27.725, 'vmax':27.775, 'delta':0.04, 'unit':' (kg L$^{-1}$)', 'label':'$\sigma_0$', 'title':'Potential Density'},
+}
 
 # define grid edges
 boxsize = 1
@@ -42,14 +63,11 @@ projection = ccrs.LambertConformal(central_latitude=55, central_longitude=-55)
 transform = ccrs.PlateCarree()
 lon_formatter = LongitudeFormatter(zero_direction_label=True)
 lat_formatter = LatitudeFormatter()
-extent  = [-67, -42, 54.5, 63]
-
-season_months = {'year':list(range(1,13)), 'spring':[3, 4, 5], 'summer':[6, 7, 8], 'autumn':[9, 10, 11], 'winter':[12, 1, 2]}
 
 aspect = 3/5
 n = 5 # number of rows
 m = 3 # numberof columns
-bottom = 0.1; left=0.05
+bottom = 0.15; left=0.05
 top=1.-bottom; right = 1.-left
 fisasp = (1-bottom-(1-top))/float( 1-left-(1-right) )
 #widthspace, relative to subplot size
@@ -121,21 +139,11 @@ for v, cm in zip(phy_vars, cmaps):
                     grid = df.groupby(['latitude', 'longitude'])['variable'].mean().unstack()
                     clim = grid
 
-                    if season == 'year':
-                        varmin = grid.min().min()
-                        varmax = grid.max().max()
-                        varrange = varmax - varmin
-
-                        vmin = varmin + 0.05*varrange
-                        vmax = varmax - 0.05*varrange
-                        delta_vmin = -0.75*(ix[varname] - ix[varname].mean()).abs().max()
-                        delta_vmax = -delta_vmin
-
                     min_year = ix.loc[index, 'year'].min()
                     title = f'{season.capitalize()} ({pd.Timestamp(year=1900, month=season_months[season][0], day=1).month_name()}-{pd.Timestamp(year=1900, month=season_months[season][-1], day=1).month_name()})'
                     title = f'Climatology ({min_year}-{clim_year})\nFull Year' if season == 'year' else title
                     ax.set_title(title, loc='left', fontweight='bold')
-                    param = ax.pcolormesh(X, Y, grid, cmap=cm, vmin=vmin, vmax=vmax, transform=transform)
+                    param = ax.pcolormesh(X, Y, grid, cmap=cm, vmin=varinfo[varname]['vmin'], vmax=varinfo[varname]['vmax'], transform=transform)
                 elif plot == 'year_of_interest':
                     index = (season_index) & (ix.year == year_of_interest)
                     df = pd.DataFrame(
@@ -148,39 +156,33 @@ for v, cm in zip(phy_vars, cmaps):
                     grid = df.groupby(['latitude', 'longitude'])['variable'].mean().unstack()
                     title = f'{year_of_interest}' if season == 'year' else ''
                     ax.set_title(title, loc='left', fontweight='bold')
-                    param = ax.pcolormesh(X, Y, grid, cmap=cm, vmin=vmin, vmax=vmax, transform=transform)
+                    param = ax.pcolormesh(X, Y, grid, cmap=cm, vmin=varinfo[varname]['vmin'], vmax=varinfo[varname]['vmax'], transform=transform)
                 elif plot == 'delta':
                     grid = grid - clim
                     title = f'Anomaly ([{year_of_interest}] - [Climatology])' if season == 'year' else ''
                     ax.set_title(title, loc='left', fontweight='bold')
-                    delta = ax.pcolormesh(X, Y, grid, cmap=cmo.cm.balance, transform=transform, vmin=delta_vmin, vmax=delta_vmax)
+                    delta = ax.pcolormesh(X, Y, grid, cmap=cmo.cm.balance, transform=transform, vmin=-varinfo[varname]['delta'], vmax=varinfo[varname]['delta'])
 
-        # add colorbars
-        bottom = 0.03
-        height = 0.012
-
-        cbax = fig.add_axes([0.05, bottom, 0.59, height])
+        cbax = fig.add_axes([0.05, 0.08, 0.59, 0.012])
         cb = plt.colorbar(param, orientation='horizontal', extend='both', cax=cbax)
-        cb.set_label(varname)
+        cb.set_label(varinfo[varname]['label'] + varinfo[varname]['unit'])
 
-        cbax = fig.add_axes([0.68, bottom, 0.28, height])
+        cbax = fig.add_axes([0.68, 0.08, 0.28, 0.012])
         cb = plt.colorbar(delta, orientation='horizontal', extend='both', cax=cbax)
-        cb.set_label('$\Delta$' + varname)
+        cb.set_label('$\Delta$' + varinfo[varname]['label'] + varinfo[varname]['unit'])
 
         # plt.show()
+        title = varinfo[varname]['title']
+        fig.suptitle(f'{title} Mean from {d[0]}-{d[1]} dbar', y=0.915)  
         fig.savefig(f'../Figures/argo/grid/{varname}_seasonal_map.png', bbox_inches='tight', dpi=350)
         plt.close(fig)
-
-        break
-    break
-raise SystemExit()
 
 # repeat above for just full year as standalone figure
 
 aspect = 3/5
 n = 1 # number of rows
 m = 3 # numberof columns
-bottom = 0.1
+bottom = 0.15
 left=0.05
 top=1.-bottom
 right = 1.-left
@@ -200,15 +202,6 @@ for v, cm in zip(phy_vars, cmaps):
         fig = plt.figure(figsize=(figwidth, figheight))
         # axes are climatology (=< clim_year), current year of interest, delta
         axes = [fig.add_subplot(1, 3, 1, projection=projection), fig.add_subplot(1, 3, 2, projection=projection), fig.add_subplot(1, 3, 3, projection=projection),]
-
-        varmin = ix[varname].min()
-        varmax = ix[varname].max()
-        varrange = varmax - varmin
-
-        vmin = varmin + 0.05*varrange
-        vmax = varmax - 0.05*varrange
-        delta_vmin = -0.75*(ix[varname] - ix[varname].mean()).abs().max()
-        delta_vmax = -delta_vmin
 
         for plot, ax in zip(['climatology', 'year_of_interest', 'delta'], axes):
 
@@ -245,20 +238,10 @@ for v, cm in zip(phy_vars, cmaps):
                 grid = df.groupby(['latitude', 'longitude'])['variable'].mean().unstack()
                 clim = grid
 
-                if season == 'year':
-                    varmin = grid.min().min()
-                    varmax = grid.max().max()
-                    varrange = varmax - varmin
-
-                    vmin = varmin + 0.05*varrange
-                    vmax = varmax - 0.05*varrange
-                    delta_vmin = -0.75*(ix[varname] - ix[varname].mean()).abs().max()
-                    delta_vmax = -delta_vmin
-
                 min_year = ix.loc[index, 'year'].min()
                 title = f'Climatology ({min_year}-{clim_year})'
                 ax.set_title(title, loc='left', fontweight='bold')
-                map = ax.pcolormesh(X, Y, grid, cmap=cm, vmin=vmin, vmax=vmax, transform=transform)
+                param = ax.pcolormesh(X, Y, grid, cmap=cm, vmin=varinfo[varname]['vmin'], vmax=varinfo[varname]['vmax'], transform=transform)
             elif plot == 'year_of_interest':
                 index = ix.year == year_of_interest
                 df = pd.DataFrame(
@@ -271,14 +254,23 @@ for v, cm in zip(phy_vars, cmaps):
                 grid = df.groupby(['latitude', 'longitude'])['variable'].mean().unstack()
                 title = f'{year_of_interest}'
                 ax.set_title(title, loc='left', fontweight='bold')
-                map = ax.pcolormesh(X, Y, grid, cmap=cm, vmin=vmin, vmax=vmax, transform=transform)
+                param = ax.pcolormesh(X, Y, grid, cmap=cm, vmin=varinfo[varname]['vmin'], vmax=varinfo[varname]['vmax'], transform=transform)
             elif plot == 'delta':
                 grid = grid - clim
                 title = f'Anomaly ([{year_of_interest}] - [Climatology])'
                 ax.set_title(title, loc='left', fontweight='bold')
-                map = ax.pcolormesh(X, Y, grid, cmap=cmo.cm.balance, transform=transform, vmin=delta_vmin, vmax=delta_vmax)
+                delta = ax.pcolormesh(X, Y, grid, cmap=cmo.cm.balance, transform=transform, vmin=-varinfo[varname]['delta'], vmax=varinfo[varname]['delta'])
 
-        # plt.show()
+        cbax = fig.add_axes([0.05, -0.15, 0.59, 0.05])
+        cb = plt.colorbar(param, orientation='horizontal', extend='both', cax=cbax)
+        cb.set_label(varinfo[varname]['label'] + varinfo[varname]['unit'])
+
+        cbax = fig.add_axes([0.67, -0.15, 0.28, 0.05])
+        cb = plt.colorbar(delta, orientation='horizontal', extend='both', cax=cbax)
+        cb.set_label('$\Delta$' + varinfo[varname]['label'] + varinfo[varname]['unit'])
+
+        title = varinfo[varname]['title']
+        fig.suptitle(f'{title} Mean from {d[0]}-{d[1]} dbar', y=1.1)  
         fig.savefig(f'../Figures/argo/grid/{varname}_map.png', bbox_inches='tight', dpi=350)
         plt.close(fig)
 
@@ -288,7 +280,7 @@ for v, cm in zip(phy_vars, cmaps):
 aspect = 3/5
 n = 1 # number of rows
 m = 2 # numberof columns
-bottom = 0.1; left=0.05
+bottom = 0.15; left=0.05
 top=1.-bottom; right = 1.-left
 fisasp = (1-bottom-(1-top))/float( 1-left-(1-right) )
 #widthspace, relative to subplot size
@@ -338,7 +330,10 @@ for plot, ax in zip(['climatology', 'year_of_interest'], axes):
         min_year = ix.loc[index, 'year'].min()
         title = f'Climatology ({min_year}-{clim_year})'
         ax.set_title(title, loc='left', fontweight='bold')
-        map = ax.pcolormesh(X, Y, grid, cmap=cmo.cm.amp, transform=transform)
+        full = ax.pcolormesh(X, Y, grid, cmap=cmo.cm.amp, transform=transform)
+        cbax = fig.add_axes([0.045, -0.15, 0.43, 0.04])
+        cb = plt.colorbar(full, orientation='horizontal', extend='both', cax=cbax)
+        cb.set_label('Number of Profiles')   
     elif plot == 'year_of_interest':
         index = ix.year == year_of_interest
         df = pd.DataFrame(
@@ -349,11 +344,13 @@ for plot, ax in zip(['climatology', 'year_of_interest'], axes):
             }
         )
         grid = df.groupby(['latitude', 'longitude'])['variable'].count().unstack()
-        title = f'{year_of_interest}'
-        ax.set_title(title, loc='left', fontweight='bold')
-        map = ax.pcolormesh(X, Y, grid, cmap=cmo.cm.amp, transform=transform)
+        ax.set_title(f'{year_of_interest}  ({sum(index)} Profiles)', loc='left', fontweight='bold')
+        year = ax.pcolormesh(X, Y, grid, cmap=cmo.cm.amp, transform=transform)
+        cbax = fig.add_axes([0.52, -0.15, 0.43, 0.04])
+        cb = plt.colorbar(year, orientation='horizontal', extend='both', cax=cbax)
+        cb.set_label('Number of Profiles')  
 
-    map = ax.pcolormesh(X, Y, grid, cmap=plt.cm.Reds, transform=transform)
+fig.suptitle(f'Profile Histogram, {sum(ix.year <= clim_year) + sum(ix.year == year_of_interest)} Total Profiles\n\n', y=1.08)  
 # plt.show()
 fig.savefig(f'../Figures/argo/grid/histogram_map.png', bbox_inches='tight', dpi=350)
 plt.close(fig)
