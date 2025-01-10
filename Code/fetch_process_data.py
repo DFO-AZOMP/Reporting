@@ -1,15 +1,16 @@
 #!/usr/bin/python
 
+import warnings
+warnings.filterwarnings("ignore", category=RuntimeWarning)
 import sys
 
+import numpy as np
 import pandas as pd
 import xarray as xr
 import argopy
 import gsw
 
-import shapely
-
-fresh = False
+fresh = True
 
 def mixed_layer(ds, dT):
 
@@ -17,24 +18,21 @@ def mixed_layer(ds, dT):
     sigma_dt = gsw.rho_t_exact(ds['SA'][0], ds['TEMP'][0] - dT, 0).item() - 1000
     da = xr.DataArray(ds['PRES'].data, [('sigma_t', sigma_t.data)])
 
-    return da.interp(sigma_t=sigma_dt).item()
+    mld = da.interp(sigma_t=sigma_dt).item() if np.unique(sigma_t).shape[0] == sigma_t.shape[0] else pd.NA
+
+    return mld
 
 phy_vars = ['TEMP', 'PSAL', 'SA', 'SIG0']
 err_var = ['', '_STD']
 depth_ranges = [(0, 50), (100, 500), (500, 1000), (1000, 2000)]
 
 if fresh:
-    # load polygon to select data withing
-    poly = pd.read_csv('../Data/polygon_3300m.csv')
-    # shapely polygon
-    polygon = shapely.geometry.Polygon(poly)
-    # subset region to make polygon searching faster
-    polygon_box = [poly.longitude.min(), poly.longitude.max(), poly.latitude.min(), poly.latitude.max()]
+    # lab sea bounding box
+    lab_sea = [-67, -43, 55, 62.5]
     # load argo index
-    argo_index = argopy.IndexFetcher().region(polygon_box).load()
+    argo_index = argopy.IndexFetcher().region(lab_sea).load()
     ix = argo_index.to_dataframe()
     # points within polygon
-    ix = ix.loc[[polygon.contains(shapely.geometry.Point(x,y)) for x,y in zip(ix.longitude, ix.latitude)]]
     ix = ix.loc[[f.split('.')[0][-1] != 'D' for f in ix.file]]
     ix = ix.reset_index().drop('index', axis=1)
     ix['cycle'] = [int(f.split('_')[-1].split('.')[0]) for f in ix.file]
