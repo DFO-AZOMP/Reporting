@@ -18,10 +18,11 @@ output_file <- "TechReport_2023/figures/Cruise_Bloom_dates.png"
 # any cruises starting later than day of year 250 have already been filtered out
 cutoff <- 170
 
-# load the data and only plot rows after the year that bloom timing data begins
+# load the data
 df <- read.csv(input_file) %>% dplyr::mutate(Region=factor(Region,levels=regions,labels=region_labels))
-bloom_start <- min((df %>% dplyr::filter(is.finite(bloom_start_doy)))$year)
-df <- df %>% dplyr::filter(year >= bloom_start)
+# # only plot rows after the year that bloom timing data begins
+# bloom_start <- min((df %>% dplyr::filter(is.finite(bloom_start_doy)))$year)
+# df <- df %>% dplyr::filter(year >= bloom_start)
 
 ylims <- c(min(df$year)-0.5,max(df$year+0.5))
 ybreaks <- seq(min(df$year),max(df$year),by=2)

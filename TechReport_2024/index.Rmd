@@ -1,6 +1,6 @@
 ---
 title: |
-  "Optical, Chemical, and Biological Oceanographic Conditions in the Labrador Sea from summer 2019 and 2023"
+  "Optical, Chemical, and Biological Oceanographic Conditions in the Labrador Sea in 2024"
 french_title: Titre ici (*Nom latin de l'espèce*)
 year: 2025
 report_number: nnn
