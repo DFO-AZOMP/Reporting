@@ -56,7 +56,6 @@ ygrid = np.arange(lab_sea[2], lab_sea[3]+boxsize, boxsize)
 X, Y = np.meshgrid(xgrid, ygrid)
 
 ix = pd.read_csv('../Data/argo_physical_means_anomalies.csv').drop('Unnamed: 0', axis=1)
-ix = pd.concat([ix, pd.DataFrame({'grid_longitude':ix.shape[0]*[pd.NA], 'grid_latitude':ix.shape[0]*[pd.NA]})], axis=1)
 
 # map setup, formatting
 projection = ccrs.LambertConformal(central_latitude=55, central_longitude=-55)
@@ -279,7 +278,7 @@ for v, cm in zip(phy_vars, cmaps):
 # setup
 aspect = 3/5
 n = 1 # number of rows
-m = 2 # numberof columns
+m = 3 # numberof columns
 bottom = 0.15; left=0.05
 top=1.-bottom; right = 1.-left
 fisasp = (1-bottom-(1-top))/float( 1-left-(1-right) )
@@ -293,7 +292,7 @@ figwidth  = (m + (m-1)*wspace)/float((n+(n-1)*hspace)*aspect)*figheight*fisasp
 # create figure, geo axes
 fig = plt.figure(figsize=(figwidth, figheight))
 # axes are climatology (=< clim_year), current year of interest
-axes = [fig.add_subplot(121, projection=projection), fig.add_subplot(122, projection=projection)]
+axes = [fig.add_subplot(131, projection=projection), fig.add_subplot(132, projection=projection),  fig.add_subplot(133)]
 
 for plot, ax in zip(['climatology', 'year_of_interest'], axes):
 
@@ -331,7 +330,7 @@ for plot, ax in zip(['climatology', 'year_of_interest'], axes):
         title = f'Climatology ({min_year}-{clim_year})'
         ax.set_title(title, loc='left', fontweight='bold')
         full = ax.pcolormesh(X, Y, grid, cmap=cmo.cm.amp, transform=transform)
-        cbax = fig.add_axes([0.045, -0.15, 0.43, 0.04])
+        cbax = fig.add_axes([0.05, -0.15, 0.28, 0.04])
         cb = plt.colorbar(full, orientation='horizontal', extend='both', cax=cbax)
         cb.set_label('Number of Profiles')   
     elif plot == 'year_of_interest':
@@ -346,9 +345,13 @@ for plot, ax in zip(['climatology', 'year_of_interest'], axes):
         grid = df.groupby(['latitude', 'longitude'])['variable'].count().unstack()
         ax.set_title(f'{year_of_interest}  ({sum(index)} Profiles)', loc='left', fontweight='bold')
         year = ax.pcolormesh(X, Y, grid, cmap=cmo.cm.amp, transform=transform)
-        cbax = fig.add_axes([0.52, -0.15, 0.43, 0.04])
+        cbax = fig.add_axes([0.36, -0.15, 0.28, 0.04])
         cb = plt.colorbar(year, orientation='horizontal', extend='both', cax=cbax)
         cb.set_label('Number of Profiles')  
+
+sns.histplot(ix.year+0.5, bins=range(ix.year.min(), 2026), ax=axes[-1])
+axes[-1].yaxis.tick_right()
+axes[-1].yaxis.set_label_position("right")
 
 fig.suptitle(f'Profile Histogram, {sum(ix.year <= clim_year) + sum(ix.year == year_of_interest)} Total Profiles\n\n', y=1.08)  
 # plt.show()
