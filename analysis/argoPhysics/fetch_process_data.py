@@ -44,7 +44,7 @@ if fresh:
     ix = pd.concat([ix, pd.DataFrame(means)], axis=1)
 
 else:
-    ix = pd.read_csv('../Data/argo_physical_means.csv').drop('Unnamed: 0', axis=1)
+    ix = pd.read_csv('data/argo_physical_means.csv').drop('Unnamed: 0', axis=1)
 
 for index, row in ix.loc[ix.MLD.isna()].iterrows():
     sys.stdout.write(f'[{index}/{ix.shape[0]} ({100*index/ix.shape[0]:.2f}%)] Processing {row.file}...')
@@ -77,4 +77,4 @@ for index, row in ix.loc[ix.MLD.isna()].iterrows():
     
     sys.stdout.write('done\n')
 
-ix.to_csv('../Data/argo_physical_means.csv')
+ix.to_csv('data/argo_physical_means.csv')

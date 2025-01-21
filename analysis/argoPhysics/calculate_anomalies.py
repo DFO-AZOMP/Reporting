@@ -24,4 +24,4 @@ for v in phy_vars:
             clim = df.loc[index, varname].mean()
             df.loc[df.month == mo, f'{varname}_ANOM'] = df.loc[df.month == mo, varname] - clim
 
-df.to_csv('../Data/argo_physical_means_anomalies.csv')
+df.to_csv('data/argo_physical_means_anomalies.csv')

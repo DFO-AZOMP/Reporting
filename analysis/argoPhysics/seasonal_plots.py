@@ -4,7 +4,9 @@ import seaborn as sns
 sns.set_theme(context='paper', style='ticks', palette='colorblind')
 import matplotlib.pyplot as plt
 
-df = pd.read_csv('../Data/argo_physical_means_anomalies.csv').drop('Unnamed: 0', axis=1)
+analysis_year = 2024
+
+df = pd.read_csv('data/argo_physical_means_anomalies.csv').drop('Unnamed: 0', axis=1)
 df['date'] = df.date.apply(pd.Timestamp)
 df['dayofyear'] = [d.dayofyear for d in df.date]
 
@@ -23,5 +25,5 @@ for v in phy_vars:
     
     fig.tight_layout()
     fig.set_size_inches(fig.get_figwidth()/3, fig.get_figheight())
-    fig.savefig(f'../Figures/argo/{v}_single_year.png', dpi=350, bbox_inches='tight')
+    fig.savefig(f'figures/{analysis_year}/timeseries/{v}_single_year.png', dpi=350, bbox_inches='tight')
     plt.close(fig)

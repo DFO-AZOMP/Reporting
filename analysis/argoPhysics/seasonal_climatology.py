@@ -12,7 +12,7 @@ clim_year = 2020
 years_of_interest = [2023, 2024]
 
 # read in data
-ix = pd.read_csv('../Data/argo_physical_means_anomalies.csv').drop('Unnamed: 0', axis=1)
+ix = pd.read_csv('data/argo_physical_means_anomalies.csv').drop('Unnamed: 0', axis=1)
 
 # variable name list to use for plots
 phy_vars = ['TEMP', 'PSAL', 'SA', 'SIG0']

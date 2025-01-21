@@ -16,7 +16,7 @@ from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
 # climatology year
 clim_year = 2020
 # our year of interest
-year_of_interest = 2024
+analysis_year = 2024
 
 # lab sea bounding box
 lab_sea = [-67, -43, 55, 62.5]
@@ -55,7 +55,7 @@ xgrid = np.arange(lab_sea[0], lab_sea[1]+boxsize, boxsize)
 ygrid = np.arange(lab_sea[2], lab_sea[3]+boxsize, boxsize)
 X, Y = np.meshgrid(xgrid, ygrid)
 
-ix = pd.read_csv('../Data/argo_physical_means_anomalies.csv').drop('Unnamed: 0', axis=1)
+ix = pd.read_csv('data/argo_physical_means_anomalies.csv').drop('Unnamed: 0', axis=1)
 
 # map setup, formatting
 projection = ccrs.LambertConformal(central_latitude=55, central_longitude=-55)
@@ -101,7 +101,7 @@ for v, cm in zip(phy_vars, cmaps):
             if season != 'year':
                 season_index = ix.month.isin(season_months[season])
 
-            for plot, ax in zip(['climatology', 'year_of_interest', 'delta'], axrow):
+            for plot, ax in zip(['climatology', 'analysis_year', 'delta'], axrow):
 
                 ax.set_extent(extent)
                 ax.add_feature(cfeature.GSHHSFeature('low', 
@@ -143,8 +143,8 @@ for v, cm in zip(phy_vars, cmaps):
                     title = f'Climatology ({min_year}-{clim_year})\nFull Year' if season == 'year' else title
                     ax.set_title(title, loc='left', fontweight='bold')
                     param = ax.pcolormesh(X, Y, grid, cmap=cm, vmin=varinfo[varname]['vmin'], vmax=varinfo[varname]['vmax'], transform=transform)
-                elif plot == 'year_of_interest':
-                    index = (season_index) & (ix.year == year_of_interest)
+                elif plot == 'analysis_year':
+                    index = (season_index) & (ix.year == analysis_year)
                     df = pd.DataFrame(
                         {
                             'longitude':pd.cut(ix.loc[index, 'longitude'], xgrid, labels=xgrid[:-1]+boxsize/2), 
@@ -153,12 +153,12 @@ for v, cm in zip(phy_vars, cmaps):
                         }
                     )
                     grid = df.groupby(['latitude', 'longitude'])['variable'].mean().unstack()
-                    title = f'{year_of_interest}' if season == 'year' else ''
+                    title = f'{analysis_year}' if season == 'year' else ''
                     ax.set_title(title, loc='left', fontweight='bold')
                     param = ax.pcolormesh(X, Y, grid, cmap=cm, vmin=varinfo[varname]['vmin'], vmax=varinfo[varname]['vmax'], transform=transform)
                 elif plot == 'delta':
                     grid = grid - clim
-                    title = f'Anomaly ([{year_of_interest}] - [Climatology])' if season == 'year' else ''
+                    title = f'Anomaly ([{analysis_year}] - [Climatology])' if season == 'year' else ''
                     ax.set_title(title, loc='left', fontweight='bold')
                     delta = ax.pcolormesh(X, Y, grid, cmap=cmo.cm.balance, transform=transform, vmin=-varinfo[varname]['delta'], vmax=varinfo[varname]['delta'])
 
@@ -173,7 +173,7 @@ for v, cm in zip(phy_vars, cmaps):
         # plt.show()
         title = varinfo[varname]['title']
         fig.suptitle(f'{title} Mean from {d[0]}-{d[1]} dbar', y=0.915)  
-        fig.savefig(f'../Figures/argo/grid/{varname}_seasonal_map.png', bbox_inches='tight', dpi=350)
+        fig.savefig(f'figures/{analyis_year}/grid/{varname}_seasonal_map.png', bbox_inches='tight', dpi=350)
         plt.close(fig)
 
 # repeat above for just full year as standalone figure
@@ -202,7 +202,7 @@ for v, cm in zip(phy_vars, cmaps):
         # axes are climatology (=< clim_year), current year of interest, delta
         axes = [fig.add_subplot(1, 3, 1, projection=projection), fig.add_subplot(1, 3, 2, projection=projection), fig.add_subplot(1, 3, 3, projection=projection),]
 
-        for plot, ax in zip(['climatology', 'year_of_interest', 'delta'], axes):
+        for plot, ax in zip(['climatology', 'analysis_year', 'delta'], axes):
 
             ax.set_extent(extent)
             ax.add_feature(cfeature.GSHHSFeature('low', 
@@ -241,8 +241,8 @@ for v, cm in zip(phy_vars, cmaps):
                 title = f'Climatology ({min_year}-{clim_year})'
                 ax.set_title(title, loc='left', fontweight='bold')
                 param = ax.pcolormesh(X, Y, grid, cmap=cm, vmin=varinfo[varname]['vmin'], vmax=varinfo[varname]['vmax'], transform=transform)
-            elif plot == 'year_of_interest':
-                index = ix.year == year_of_interest
+            elif plot == 'analysis_year':
+                index = ix.year == analysis_year
                 df = pd.DataFrame(
                     {
                         'longitude':pd.cut(ix.loc[index, 'longitude'], xgrid, labels=xgrid[:-1]+boxsize/2), 
@@ -251,12 +251,12 @@ for v, cm in zip(phy_vars, cmaps):
                     }
                 )
                 grid = df.groupby(['latitude', 'longitude'])['variable'].mean().unstack()
-                title = f'{year_of_interest}'
+                title = f'{analysis_year}'
                 ax.set_title(title, loc='left', fontweight='bold')
                 param = ax.pcolormesh(X, Y, grid, cmap=cm, vmin=varinfo[varname]['vmin'], vmax=varinfo[varname]['vmax'], transform=transform)
             elif plot == 'delta':
                 grid = grid - clim
-                title = f'Anomaly ([{year_of_interest}] - [Climatology])'
+                title = f'Anomaly ([{analysis_year}] - [Climatology])'
                 ax.set_title(title, loc='left', fontweight='bold')
                 delta = ax.pcolormesh(X, Y, grid, cmap=cmo.cm.balance, transform=transform, vmin=-varinfo[varname]['delta'], vmax=varinfo[varname]['delta'])
 
@@ -270,7 +270,7 @@ for v, cm in zip(phy_vars, cmaps):
 
         title = varinfo[varname]['title']
         fig.suptitle(f'{title} Mean from {d[0]}-{d[1]} dbar', y=1.1)  
-        fig.savefig(f'../Figures/argo/grid/{varname}_map.png', bbox_inches='tight', dpi=350)
+        fig.savefig(f'figures/{analysis_year}/grid/{varname}_map.png', bbox_inches='tight', dpi=350)
         plt.close(fig)
 
 # histogram in each box
@@ -294,7 +294,7 @@ fig = plt.figure(figsize=(figwidth, figheight))
 # axes are climatology (=< clim_year), current year of interest
 axes = [fig.add_subplot(131, projection=projection), fig.add_subplot(132, projection=projection),  fig.add_subplot(133)]
 
-for plot, ax in zip(['climatology', 'year_of_interest'], axes):
+for plot, ax in zip(['climatology', 'analysis_year'], axes):
 
     ax.set_extent(extent)
     ax.add_feature(cfeature.GSHHSFeature('low', 
@@ -333,8 +333,8 @@ for plot, ax in zip(['climatology', 'year_of_interest'], axes):
         cbax = fig.add_axes([0.05, -0.15, 0.28, 0.04])
         cb = plt.colorbar(full, orientation='horizontal', extend='both', cax=cbax)
         cb.set_label('Number of Profiles')   
-    elif plot == 'year_of_interest':
-        index = ix.year == year_of_interest
+    elif plot == 'analysis_year':
+        index = ix.year == analysis_year
         df = pd.DataFrame(
             {
                 'longitude':pd.cut(ix.loc[index, 'longitude'], xgrid, labels=xgrid[:-1]+boxsize/2), 
@@ -343,7 +343,7 @@ for plot, ax in zip(['climatology', 'year_of_interest'], axes):
             }
         )
         grid = df.groupby(['latitude', 'longitude'])['variable'].count().unstack()
-        ax.set_title(f'{year_of_interest}  ({sum(index)} Profiles)', loc='left', fontweight='bold')
+        ax.set_title(f'{analysis_year}  ({sum(index)} Profiles)', loc='left', fontweight='bold')
         year = ax.pcolormesh(X, Y, grid, cmap=cmo.cm.amp, transform=transform)
         cbax = fig.add_axes([0.36, -0.15, 0.28, 0.04])
         cb = plt.colorbar(year, orientation='horizontal', extend='both', cax=cbax)
@@ -353,7 +353,7 @@ sns.histplot(ix.year+0.5, bins=range(ix.year.min(), 2026), ax=axes[-1])
 axes[-1].yaxis.tick_right()
 axes[-1].yaxis.set_label_position("right")
 
-fig.suptitle(f'Profile Histogram, {sum(ix.year <= clim_year) + sum(ix.year == year_of_interest)} Total Profiles\n\n', y=1.08)  
+fig.suptitle(f'Profile Histogram, {sum(ix.year <= clim_year) + sum(ix.year == analysis_year)} Total Profiles\n\n', y=1.08)  
 # plt.show()
-fig.savefig(f'../Figures/argo/grid/histogram_map.png', bbox_inches='tight', dpi=350)
+fig.savefig(f'figures/{analysis_year}/grid/histogram_map.png', bbox_inches='tight', dpi=350)
 plt.close(fig)
