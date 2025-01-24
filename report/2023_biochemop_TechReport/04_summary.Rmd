@@ -4,15 +4,7 @@ The Atlantic Zone Off-Shelf Monitoring Program (AZOMP) provides observations on 
 
 Strong inter-annual variability was observed in surface nutrient concentrations, which are consistent among regions. Since 2014, there have been positive anomalies in all regions, with a trend that started in 2013 in the CLS for nitrate, phosphate, and silicate. The CLS showed a below-average nitrate concentration in 2015, however, likely as a result of the nutrient draw down caused by the abnormally large bloom observed in that year. Negative anomalies have been observed on HB and CLS in 2022 and 2023, breaking the trend of high anomalies. Chl-a concentrations have followed an inverse pattern, with lower than normal concentrations for all three regions since 2014, except for the anomalously high concentration in 2015, and high concentrations on HB and CLS in 2022-2023. The high anomalies in 2015 and 2022 were associated with an intense phytoplankton bloom consisting mainly of *Phaeocystis sp.* which was identified from shipboard observations. Ocean color metrics (spring peak timing, fall bloom initiation, and annual and seasonal averages) showed no obvious trends over time and each region revealed its own pattern. Satellite observations are impacted by cloud cover, resulting in data gaps which might miss the peak of the bloom in a given year and region. Recurrent earlier sampling dates from year to year may partly explain the observed negative anomalies in in-situ chl-a concentrations, since sampling may have occurred before the start of the seasonal spring bloom.  
 
-
-
-
-
-[INCOMPLETE]  
-With the exception of *Pseudocalanus spp.* and Amphipoda, which exhibited high and low abundance anomalies respectively, other taxa do not show clear trends during the 2019-2023 period.  
-In HB and CLS, the higher than average %PDI in *C. finmarchicus* may be linked in part to their seasonal life-cycle where the populations are consistently more advanced in development than the average. The GS region, generally sampled later in the bloom season, showed a population growth at an average advancement. 
-
-
+With the exception of *Pseudocalanus spp.* and Amphipoda, which exhibited high and low abundance anomalies respectively, other taxa do not show clear trends during the 2019-2023 period. In HB and CLS, the higher than average %PDI in *C. finmarchicus* may have been linked in part to their seasonal life-cycle where the populations were consistently more advanced in development than the average. The GS region, generally sampled later in the bloom season, showed a population growth rate which was slower or close to the average.  
 
 
 # Acknowledgements
