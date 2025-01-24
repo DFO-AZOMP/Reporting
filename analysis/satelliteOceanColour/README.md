@@ -1,0 +1,1 @@
+ **data/AZOMP_polygon_season_bounds_[MODIS/OCCCI].csv** contains the start of the "spring", "summer", and "fall" seasons as defined by the bloom phenology within each polygon using either MODIS or OCCCI satellite data.  

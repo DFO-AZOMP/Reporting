@@ -1,0 +1,1 @@
+**data/Cruise_and_bloom_dates.csv** contains the start and end date of in situ sampling along the AR7W line on each annual mission, as well as the start and end of the satellite-modeled spring phytoplankton bloom (found in `analysis/satelliteOceanColour/data`). Note that up to 2023 MODIS satellite data was used to derive the start/end of the bloom, before switching to OCCCI.  
