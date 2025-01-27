@@ -1,6 +1,6 @@
 ---
 title: |
-  "Optical, Chemical, and Biological Oceanographic Conditions in the Labrador Sea in 2024"
+  "Optical, Chemical, and Biological Oceanographic Conditions in the Labrador Sea from summer 2019 and 2023"
 french_title: Titre ici (*Nom latin de l'espèce*)
 year: 2025
 report_number: nnn
@@ -25,7 +25,7 @@ author_footnote: "Email: Marc.Ringuette@dfo-mpo.gc.ca | telephone: (555) 555-555
 abstract: |
   The chemistry and biology of the Labrador Sea and adjacent shelves have undergone significant changes over the 2019–2023 period compared to previous years. The Atlantic Zonal Off-shelf Monitoring Program (AZOMP) revealed an increase in dissolved inorganic carbon and a decrease in pH, a trend that extends back to the beginning of the monitoring program in the mid-1990’s. While the mean concentration of chlorofluorocarbon (CFC-12) over the water column has remained stable, the concentration of sulfur hexafluoride ($SF_6$) has been increasing steadily since we began to measure it in 2011, reflecting the atmospheric history of these gases. The mean temperature of the top layer (0–100 m) has been mainly below normal since 2011, except for the Hamilton Bank where two warmer-than-normal years were observed in 2015 and 2018, and in the Central Labrador Sea when mean temperature was above normal in 2012. In 2019, the entire Labrador Sea temperature was above normal with a record-high mean temperature in the Central Labrador Sea, while mean temperature was below normal in 2022. The shelves mean temperature were close to normal in 2023 and the Central Labrador Sea temperature was above-normal. In the 2019-2023 period, both surface and deep nutrients levels were below normal except for the Greenland Shelf in 2022 and surface silicate in 2023, however, the timing of the mission with respect to the spring phytoplankton bloom development may impacts the nutrient budget. In fact, the timing of the mission before 2019 occurred earlier each year compared to the previous year due to the constraints of crew change, and consistent dates in sea-going expeditions are needed to remove uncertainties related to sampling time. Deep nutrients exhibited inter-annual and regional variations until 2018. In recent years (2019-2023), deep-nutrients have remained below average in all three regions of interest, suggesting a profound change in the biogeochemistry of the Labrador Sea.  
   
-  While integrated chlorophyll-a levels were below normal in 2019, continuing a trend that started in 2014, except in 2015 in the Central Labrador Sea, values in 2022 and 2023 were above average, with a record-high integrated chlorophyll-a value in 2022 on the Hamilton Bank. An unusually large bloom of Phaeocystis sp., that covered a large extent of the Labrador Sea, occurred in 2022 and explains the high values. This is the second largest Phaeocystis sp. bloom event in the Labrador Sea after 2015. Satellite-derived chlorophyll-a concentration reveals the large variability in the peak timing of the spring bloom and in the fall bloom initiation. While the mean annual satellite-derived chlorophyll-a on Hamilton Bank was mainly above-normal, values were below-normal between 2019-2021 on the Greenland Shelf and Central Labrador Sea, and above normal in 2022-2023.  
+  While integrated chlorophyll-a levels were below normal in 2019, continuing a trend that started in 2014, except in 2015 in the Central Labrador Sea, values in 2022 and 2023 were above average, with a record-high integrated chlorophyll-a value in 2022 on the Hamilton Bank. An unusually large bloom of *Phaeocystis sp.*, that covered a large extent of the Labrador Sea, occurred in 2022 and explains the high values. This is the second largest Phaeocystis sp. bloom event in the Labrador Sea after 2015. Satellite-derived chlorophyll-a concentration reveals the large variability in the peak timing of the spring bloom and in the fall bloom initiation. While the mean annual satellite-derived chlorophyll-a on Hamilton Bank was mainly above-normal, values were below-normal between 2019-2021 on the Greenland Shelf and Central Labrador Sea, and above normal in 2022-2023.  
   
   Unfortunately, the late (2020) or lack of (2021) in situ data collection due to the COVID pandemic and the lack of ship availability, respectively, did not allow inclusion of these two years in the current report with the exception of satellite ocean color metrics, such that recent in situ trends need to be interpreted with caution. 
 
@@ -116,6 +116,17 @@ opts_chunk$set(
   fig.align = fig_align,
   fig.pos = fig_pos
 )
+# define paths to different products (subdirectories in these should be data/ and figures/[report_year])
+report_year <- 2023
+path_common <- "../../analysis/common/"
+path_cruiseAndBloomTiming <- "../../analysis/cruiseAndBloomTimingPlot/"
+path_oceanAcidification <- "../../analysis/inSituOceanAcidification/"
+path_tracers <- "../../analysis/inSituTracers/"
+path_temperatureScorecard <- "../../analysis/inSituTemperatureScorecard/"
+path_nutrientsScorecards <- "../../analysis/inSituNutrientsScorecards/"
+path_chlaScorecard <- "../../analysis/inSituChlaScorecard/"
+path_satelliteOceanColour <- "../../analysis/satelliteOceanColour/"
+path_mesozooplanktonScorecards <- "../../analysis/inSituMesozooplanktonScorecards/"
 ```
 
 ```{r load-libraries, cache=FALSE}
