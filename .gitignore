@@ -2,5 +2,20 @@
 .Rhistory
 .RData
 .Ruserdata
-Data/Raw/
-Code/data_preprocessing*
+
+# topo files
+topo*.nc
+
+# all netCDF files
+*.nc
+
+# all .rda files
+*.rda
+
+# any supplementaryData
+analysis/*/supplementaryData
+# any supplementaryFigures
+analysis/*/supplementaryFigures
+# any checkData
+analysis/*/checkData
+
