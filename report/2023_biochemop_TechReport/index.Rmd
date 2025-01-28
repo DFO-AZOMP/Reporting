@@ -10,7 +10,7 @@ author: |
   Kumiko Azetsu-Scott^1^,
   Carrie-Ellen Gabriel^1^, and
   Stephanie Clay^1^
-author_list: "Ringuette, M., Devred, E., Azetsu-Scott, K., Head, E., Gabriel, C.-E., and Clay, S."
+author_list: "Ringuette, M., Devred, E., Azetsu-Scott, K., Gabriel, C.-E., and Clay, S."
 region: Maritimes Region
 french_region: ""
 isbn: ""
