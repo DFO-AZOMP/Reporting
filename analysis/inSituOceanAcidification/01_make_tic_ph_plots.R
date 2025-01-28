@@ -70,6 +70,7 @@ p <- ggplot(df_to_plot) +
           axis.title.x=element_text(size=20,face="bold"),
           axis.title.y.left=element_text(size=20,face="bold",margin=margin(0,5,0,0)),
           axis.title.y.right=element_text(size=20,face="bold",angle=90,margin=margin(0,0,0,5)),
+          plot.title=element_text(size=24, face="bold", hjust=0.5),
           ggh4x.axis.ticks.length.minor = rel(1),
           legend.position=c(0.8,0.05),
           legend.direction="horizontal",
@@ -77,7 +78,8 @@ p <- ggplot(df_to_plot) +
           legend.text=element_text(size=20)) +
     labs(x="Year", y="TIC(µmol/kg)") +
     guides(color = guide_legend(override.aes = list(size=legendsize)),
-           fill = guide_legend(override.aes = list(size=legendsize)))
+           fill = guide_legend(override.aes = list(size=legendsize))) +
+    ggtitle("Newly Ventilated LSW")
 
 ggsave(filename=output_file,
        plot=p,

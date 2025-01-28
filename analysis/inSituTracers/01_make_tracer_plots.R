@@ -1,7 +1,7 @@
 # Stephanie.Clay@dfo-mpo.gc.ca
 # 2025-01-28
 
-# This code creates the tracer (CFC12, CFC-12) plots for AZOMP data, mimicking the style previously used in Excel.
+# This code creates the tracer (SF6, CFC-12) plots for AZOMP data, mimicking the style previously used in Excel.
 # Units: fmol Kg-1 (SF6 concentration), pmol kg-1 (CFC-12 concentration)
 
 rm(list=ls())
