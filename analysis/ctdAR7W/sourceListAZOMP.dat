@@ -1,0 +1,5 @@
+"year" "mission" "path" "pattern"
+2021 "HUD2021127" "\\ent.dfo-mpo.ca/ATLShares/Science/BIODataSvc/SRC/2020s/2021/HUD2021127/CTD/CTD_PROCESSING/ODF/" "^D.*\.ODF$"
+2022 "AT4805" "R:/Science/BIODataSvc/SRC/2020s/2022/AT4805/CTD/DATASHOP_PROCESSING/Step_3_Update_Metadata" "CTD.*DN\.ODF"
+2023 "CAR2023573" "\\ent.dfo-mpo.ca/ATLShares/Science/BIODataSvc/SRC/2020s/2023/CAR2023573/CTD_PROCESSING/ODF" "^D.*\.ODF$"
+2024 "CAR2024924" "\\dcnsbiona01a/biodatasvc/SRC/2020s/2024/CAR2024924/CTD/DATASHOP_PROCESSING/Step_4_Run_Automated_Checks" "CTD.*DN\.ODF"
