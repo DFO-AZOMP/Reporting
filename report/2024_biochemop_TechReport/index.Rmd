@@ -8,10 +8,10 @@ author: |
   Marc Ringuette^1^,
   Emmanuel Devred^1^,
   Kumiko Azetsu-Scott^1^,
-  Erica Head^1^,
-  Carrie-Ellen Gabriel^1^, and
-  Stephanie Clay^1^
-author_list: "Ringuette, M., Devred, E., Azetsu-Scott, K., Head, E., Gabriel, C.-E., and Clay, S."
+  Stephanie Clay^1^,
+  Chris Gordon^1^, and
+  Chantelle Layton^1^
+author_list: "Ringuette, M., Devred, E., Azetsu-Scott, K., Clay, S., Gordon, C., and Layton, C."
 region: Maritimes Region
 french_region: ""
 isbn: ""
@@ -117,7 +117,7 @@ opts_chunk$set(
   fig.pos = fig_pos
 )
 # define paths to different products (subdirectories in these should be data/ and figures/[report_year])
-report_year <- 2023
+report_year <- 2024
 path_common <- "../../analysis/common/"
 path_cruiseAndBloomTiming <- "../../analysis/cruiseAndBloomTimingPlot/"
 path_oceanAcidification <- "../../analysis/inSituOceanAcidification/"
