@@ -15,9 +15,9 @@ report_year <- 2023
 
 #*******************************************************************************
 
-input_file <- "analysis/inSituNutrientsScorecards/data/AZOMPNutrients.txt"
-output_file1 <- paste0("analysis/inSituNutrientsScorecards/figures/",report_year,"/",gsub(".txt","",basename(input_file)),"ShallowScorecard_",paste0(range(years),collapse="-"),"_ref",paste0(range(ref_years),collapse="-"),".png")
-output_file2 <- paste0("analysis/inSituNutrientsScorecards/figures/",report_year,"/",gsub(".txt","",basename(input_file)),"DeepScorecard_",paste0(range(years),collapse="-"),"_ref",paste0(range(ref_years),collapse="-"),".png")
+input_file <- "analysis/bottleNutrients/data/AZOMPNutrients.txt"
+output_file1 <- paste0("analysis/bottleNutrients/figures/",report_year,"/",gsub(".txt","",basename(input_file)),"ShallowScorecard_",paste0(range(years),collapse="-"),"_ref",paste0(range(ref_years),collapse="-"),".png")
+output_file2 <- paste0("analysis/bottleNutrients/figures/",report_year,"/",gsub(".txt","",basename(input_file)),"DeepScorecard_",paste0(range(years),collapse="-"),"_ref",paste0(range(ref_years),collapse="-"),".png")
 
 img_width <- 2200
 img_height <- 1200

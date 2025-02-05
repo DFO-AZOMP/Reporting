@@ -25,7 +25,7 @@ ref_years <- 1999:2020
 
 # required columns: region,mission_name,station,event_id,sample_id,year,month,day,date,season,time,longitude,latitude,depth,parameter_name,method,data_value
 # note that values are grouped by event id to integrate or average results, assuming one event corresponds to multiple samples at different depths in the water column
-input_file <- list.files("analysis/inSituChlaScorecard/data", full.names=TRUE, pattern="azomp_chla")
+input_file <- list.files("analysis/bottleChla/data", full.names=TRUE, pattern="azomp_chla")
 
 # output filename/location
 output_file <- file.path(dirname(input_file),"AZOMPChla.txt")

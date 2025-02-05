@@ -124,14 +124,14 @@ opts_chunk$set(
 report_year <- 2023
 path_common <- "../../analysis/common/"
 path_stationMap <- "../../analysis/stationMap/"
-path_cruiseAndBloomTiming <- "../../analysis/cruiseAndBloomTimingPlot/"
-path_oceanAcidification <- "../../analysis/inSituOceanAcidification/"
-path_tracers <- "../../analysis/inSituTracers/"
-path_temperatureScorecard <- "../../analysis/inSituTemperatureScorecard/"
-path_nutrientsScorecards <- "../../analysis/inSituNutrientsScorecards/"
-path_chlaScorecard <- "../../analysis/inSituChlaScorecard/"
+path_cruiseAndBloomTimingPlot <- "../../analysis/cruiseAndBloomTimingPlot/"
+path_bottleOceanAcidification <- "../../analysis/bottleOceanAcidification/"
+path_bottleTracers <- "../../analysis/bottleTracers/"
+path_ctdTemperature0to100m <- "../../analysis/ctdTemperature0to100m/"
+path_bottleNutrients <- "../../analysis/bottleNutrients/"
+path_bottleChla  <- "../../analysis/bottleChla/"
 path_satelliteOceanColour <- "../../analysis/satelliteOceanColour/"
-path_mesozooplanktonScorecards <- "../../analysis/inSituMesozooplanktonScorecards/"
+path_netMesozooplankton <- "../../analysis/netMesozooplankton/"
 ```
 
 ```{r load-libraries, cache=FALSE}

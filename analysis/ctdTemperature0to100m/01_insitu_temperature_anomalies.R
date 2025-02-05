@@ -1,8 +1,9 @@
 # Stephanie.Clay@dfo-mpo.gc.ca
-# Apr 2024
+# Mar 2021
 
-# Input: File from Marc Ringuette with mesozooplankton counts.
+# Input: Data extracted from BioCHEM using the scripts in the biochem_extractions repo.
 # This calculates climatologies and anomalies and formats it to create scorecards.
+# Depth is rounded before restricting values in the water column.
 
 rm(list=ls())
 library(dplyr)
@@ -18,14 +19,17 @@ ref_years <- 1999:2020
 
 #*******************************************************************************
 
-input_file <- list.files("analysis/inSituMesozooplanktonScorecards/data", full.names=TRUE, pattern="Mesozoo")
+# input file extracted using scripts from BioCHEM repo / extractions / azomp
+# required columns: region,mission_name,station,event_id,sample_id,year,month,day,date,season,time,longitude,latitude,depth,parameter_name,method,data_value
+# note that values are grouped by event id to integrate or average results, assuming one event corresponds to multiple samples at different depths in the water column
+input_file <- list.files("analysis/ctdTemperature0to100m/data", full.names=TRUE, pattern="azomp_temperature")
 
 # output filename/location
-output_file <- file.path(dirname(input_file),"AZOMPMesozooplankton.txt")
+output_file <- file.path(dirname(input_file),"AZOMPTemperature.txt")
 
-regions <- c("HB", "CLS", "GS")
+regions <- c("LAS", "CLS", "GS")
 
-variables <- c( "Calanus finmarchicus", "Calanus glacialis", "Calanus hyperboreus", "Pseudocalanus", "Oithona", "Euphausiid", "Amphipoda", "Centric Diatoms", "%PDI")
+max_depth <- 100 # metres, exclusive
 
 # REMOVE LATE SAMPLING YEARS FROM REFERENCE YEARS - ONLY applies to AZOMP since it does one cruise in spring
 # cutoff day of year between "early" and "late" sampling
@@ -33,28 +37,24 @@ cutoff <- 170
 # late sampling years will have open circles in the time series plots and greyed out anomaly boxes in the scorecards
 late_sampling <- read.csv("analysis/cruiseAndBloomTimingPlot/data/Cruise_and_bloom_dates.csv") %>% dplyr::filter(AR7W_start_doy >= cutoff)
 late_sampling <- as.numeric(unique(unlist(late_sampling$year)))
-# manually add more late years
-late_sampling <- sort(unique(c(late_sampling,c(1995,1996,1998,1999,2002,2003))))
 ref_years <- ref_years[!(ref_years %in% late_sampling)]
-
-
-#*******************************************************************************
 
 if (ref_years[1] < min(years) | ref_years[length(ref_years)] > max(years)) stop("Reference years beyond range of selected years")
 
 df <- read.csv(input_file) %>%
-    dplyr::mutate(year=as.integer(Year), average=as.numeric(average)) %>%
-    dplyr::mutate(region=ifelse(grepl("Greenland",Bill.s.zonation,ignore.case=TRUE),"GS",
-                                ifelse(grepl("bassin|basin",Bill.s.zonation,ignore.case=TRUE),"CLS",
-                                ifelse(grepl("Labrador Shelf",Bill.s.zonation,ignore.case=TRUE),"HB", NA)))) %>%
-    dplyr::mutate(taxa=ifelse(taxa=="Euphausid","Euphausiid",taxa)) %>%
-    dplyr::select(taxa, region, year, month, average)
-
-df <- df %>%
-    dplyr::filter(year %in% years) %>%
-    dplyr::rename(polygon=region, index=taxa) %>%
+    dplyr::mutate(depth=round(depth)) %>%
+    dplyr::filter(year %in% years & !(year %in% late_sampling) & parameter_name=="Temperature" & depth < max_depth) %>%
+    tidyr::drop_na(data_value) %>%
+    dplyr::distinct() %>%
+    dplyr::mutate(variable=tolower(parameter_name)) %>%
+    # first average over depth
+    dplyr::group_by(variable,region,mission_name,year,month,day,event_id) %>%
+    dplyr::summarize(depth_mean=mean(data_value,na.rm=TRUE)) %>%
+    dplyr::ungroup() %>%
+    # then get stats over each year
+    dplyr::rename(polygon=region, index=variable) %>%
     dplyr::group_by(polygon, year, index) %>%
-    dplyr::summarize(mean_annual=mean(average,na.rm=TRUE)) %>%
+    dplyr::summarize(mean_annual=mean(depth_mean,na.rm=TRUE)) %>%
     dplyr::ungroup() %>%
     dplyr::group_by(polygon,index) %>%
     dplyr::mutate(mean_climatology=mean(mean_annual[year %in% ref_years],na.rm=TRUE),
@@ -63,9 +63,9 @@ df <- df %>%
     dplyr::mutate(anomaly=mean_annual-mean_climatology) %>%
     dplyr::mutate(standardized_anomaly=anomaly/sd_climatology) %>%
     # make sure the input data contains all the selected years for all the selected regions
-    dplyr::left_join(x=expand.grid(polygon=regions,year=years,index=variables),
+    dplyr::left_join(x=expand.grid(polygon=regions,year=years,index="temperature"),
                      by=c("polygon","year","index")) %>%
-    dplyr::mutate(index=factor(index,levels=variables)) %>%
+    dplyr::mutate(index=factor(index,levels="temperature")) %>%
     dplyr::arrange(polygon,index,year) %>%
     dplyr::distinct()
 

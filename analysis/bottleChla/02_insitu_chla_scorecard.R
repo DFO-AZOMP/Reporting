@@ -15,8 +15,8 @@ report_year <- 2023
 
 #*******************************************************************************
 
-input_file <- "analysis/inSituTemperatureScorecard/data/AZOMPTemperature.txt"
-output_file <- paste0("analysis/inSituTemperatureScorecard/figures/",report_year,"/",gsub(".txt","",basename(input_file)),"Scorecard_",paste0(range(years),collapse="-"),"_ref",paste0(range(ref_years),collapse="-"),".png")
+input_file <- "analysis/bottleChla/data/AZOMPChla.txt"
+output_file <- paste0("analysis/bottleChla/figures/",report_year,"/",gsub(".txt","",basename(input_file)),"Scorecard_",paste0(range(years),collapse="-"),"_ref",paste0(range(ref_years),collapse="-"),".png")
 
 img_width <- 2200
 img_height <- 500
@@ -28,14 +28,11 @@ region_str <- c("GS", "CLS", "LAS")
 region_lbl <- c("Greenland Shelf", "Central Labrador Sea", "Hamilton Bank")
 
 # variable name used in the input file
-variable_str <- "temperature"
+variable_str <- "Chlorophyll_A_0_100"
 # corresponding name to display on the scorecard
-variable_lbl <- "Temperature (0-100m)"
+variable_lbl <- "Chlorophyll-a (0-100m)"
 # variable controlling the format of the mean+-SD labels on the scorecard
 meansd_format <- "%.1f"
-
-
-#*******************************************************************************
 
 df <- dplyr::left_join(
     expand.grid(polygon=region_str, year=years, index=variable_str),

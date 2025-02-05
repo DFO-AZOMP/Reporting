@@ -15,7 +15,7 @@ report_year <- 2023
 
 #*******************************************************************************
 
-input_file <- "analysis/inSituMesozooplanktonScorecards/data/AZOMPMesozooplankton.txt"
+input_file <- "analysis/netMesozooplankton/data/AZOMPMesozooplankton.txt"
 
 # THESE NEED TO BE IN THE ORDER YOU WANT THEM TO PLOT, starting at the bottom:
 # region/polygon abbreviations used in the input file (will filter input to use these polygons only)
@@ -43,7 +43,7 @@ variables <- list(CfinPDI=list(vars=c("Calanus finmarchicus", "%PDI"), meansd_fo
 for (i in 1:length(variables)) {
     
     v <- variables[[i]]
-    output_file <- paste0("analysis/inSituMesozooplanktonScorecards/figures/",report_year,"/",gsub(".txt","",basename(input_file)),names(variables)[i],"_Scorecard_",paste0(range(years),collapse="-"),"_ref",paste0(range(ref_years),collapse="-"),".png")
+    output_file <- paste0("analysis/netMesozooplankton/figures/",report_year,"/",gsub(".txt","",basename(input_file)),names(variables)[i],"_Scorecard_",paste0(range(years),collapse="-"),"_ref",paste0(range(ref_years),collapse="-"),".png")
     variable_str <- variable_lbl <- v$vars
     meansd_format <- v$meansd_format
     

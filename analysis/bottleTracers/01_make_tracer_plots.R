@@ -11,8 +11,8 @@ library(dplyr)
 library(ggh4x)
 library(lubridate)
 
-input_file <- "analysis/inSituTracers/data/azomp_tracers.csv"
-output_file <- "analysis/inSituTracers/figures/2023/CFC12_SF6.png"
+input_file <- "analysis/bottleTracers/data/azomp_tracers.csv"
+output_file <- "analysis/bottleTracers/figures/2023/CFC12_SF6.png"
 
 df <- read.csv(input_file) %>%
     dplyr::mutate(year=as.numeric(floor(year)),
