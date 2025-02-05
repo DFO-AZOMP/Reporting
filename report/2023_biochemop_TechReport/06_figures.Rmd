@@ -5,7 +5,7 @@
 (ref:AR7Wmap) AR7W transect within the Labrador Sea. Blue dots represent the location of the core stations. Red boxes correspond to the regions where satellite chl-a concentration is extracted (i.e., HB, CLS, and GS). Solid and dashed black lines correspond to the 500 and 250 m isobaths, respectively.  
 
 ```{r AR7Wmap, fig.pos="H", fig.cap = "(ref:AR7Wmap)"}
-knitr::include_graphics(paste0(path_common,"figures/AR7W_map.png"))
+knitr::include_graphics(paste0(path_stationMap,report_year,"/AR7W_map.png"))
 ```
 
 
