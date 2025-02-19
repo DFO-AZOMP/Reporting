@@ -60,18 +60,7 @@ output_file <- paste0("analysis/stationMap/",report_year,"/AR7W_map.png")
 
 
 
-
-
-
-# need:
-# scale bar
-# updated caption for figure
-# duplicated y axis
-
-
-
-
-
+#*******************************************************************************
 
 # define the projection to use, centered at 55N/55W
 proj_to_use <- "+proj=lcc +lat_1=40 +lat_2=80 +lat_0=55 +lon_0=-55 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs"
@@ -121,12 +110,14 @@ p1 <- ggplot() +
     scale_fill_stepsn(name="Bathymetry (m)", colors=colorRampPalette(c("#00F0FF","#8CFFE6","#E0FFF0","white"))(6), limits=c(0,4500), breaks=c(0,750,1500,2250,3000,3750,4500), oob=scales::squish) +
     geom_sf(data=polygons, fill=NA, color="red", linewidth=1.1, alpha=0.8) +
     geom_sf(data=stations, fill="blue", color="black", alpha=0.8, size=4, pch=21) +
-    coord_sf(crs=proj_to_use, xlim = c(-500000, 500000), ylim = c(-180000, 800000), clip = "on") +
-    scale_y_continuous(breaks=seq(52,62,by=2), sec.axis=dup_axis()) +
+    coord_sf(crs=proj_to_use, xlim = c(-500000, 500000), ylim = c(-180000, 800000), clip = "on",
+             # label_axes=list(bottom="E",top="E",left="N",right="N")) +
+             label_axes=list(bottom="E",left="N",right="N")) +
+    scale_y_continuous(breaks=seq(52,62,by=2)) +
     theme_bw() +
     theme(panel.background = element_rect(fill = NA),
           panel.ontop=TRUE,
-          panel.grid.major=element_line(color="darkgrey"),
+          panel.grid.major=element_line(color="darkgrey",linewidth=0.3),
           axis.text.x=element_text(size=20,color="black"),
           axis.text.y.left=element_text(size=20,color="black"),
           axis.text.y.right=element_text(size=20,color="black"),
@@ -136,7 +127,7 @@ p1 <- ggplot() +
           legend.title=element_text(size=24),
           legend.text=element_text(size=18),
           legend.margin=margin(0,0,-10,0)) +
-    # annotation_scale(location="br", text_cex=1.2, style="bar") + # this scale bar is wrong
+    annotation_scale(location="br", text_cex=1.5, style="bar") +
     guides(fill = guide_colourbar(title.hjust = 0.5,
                                   ticks.colour = "black",
                                   barwidth = unit(14, "cm"),
@@ -173,6 +164,6 @@ ggsave(filename=output_file,
        plot=p,
        dpi=150,
        units="px",
-       width=1550,
+       width=1600,
        height=1500)
 
