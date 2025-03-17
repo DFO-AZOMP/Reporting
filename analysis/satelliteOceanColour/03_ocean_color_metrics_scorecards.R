@@ -4,33 +4,35 @@ library(dplyr)
 library(ggplot2)
 source("analysis/common/make_scorecards.R")
 
-# range of years to process
-years <- 2003:2023
-# reference years that were used in the climatology
-ref_years <- 2003:2020
-input_file <- "analysis/satelliteOceanColour/data/AZOMPOceanColourMODIS_ForRegionalDoc.txt"
-
 # # range of years to process
-# years <- 1997:2023
+# years <- 2003:2023
 # # reference years that were used in the climatology
-# ref_years <- 1999:2020
-# input_file <- "analysis/satelliteOceanColour/data/AZOMPOceanColourOCCCI_ForRegionalDoc.txt"
+# ref_years <- 2003:2020
+# input_file <- "analysis/satelliteOceanColour/data/AZOMPOceanColourMODIS_ForRegionalDoc.txt"
 
-report_year <- 2023
+# range of years to process
+years <- 1997:2024
+# reference years that were used in the climatology
+ref_years <- 1999:2020
+input_file <- "analysis/satelliteOceanColour/data/AZOMPOceanColourOCCCI_ForRegionalDoc.txt"
+
+report_year <- 2024
 
 
 #*******************************************************************************
 
 output_file <- paste0("analysis/satelliteOceanColour/figures/",report_year,"/",gsub(".txt","",basename(input_file)),"Scorecard_",paste0(range(years),collapse="-"),"_ref",paste0(range(ref_years),collapse="-"),".png")
 
+dir.create(dirname(output_file), recursive=TRUE, showWarnings=FALSE)
+
 # THESE NEED TO BE IN THE ORDER YOU WANT THEM TO PLOT, starting at the bottom:
 # region/polygon abbreviations used in the input file (will filter input to use these polygons only)
 region_str <- c("GS", "CLS", "LAS")
 # corresponding region/polygon labels that will appear on the plot
-region_lbl <- c("Greenland Shelf", "Central Labrador Sea", "Hamilton Bank")
+region_lbl <- c("GS","CLS","HB")#c("Greenland Shelf", "Central Labrador Sea", "Hamilton Bank")
 
-img_width <- 1600
-img_height <- 2200
+img_width <- 2000
+img_height <- 2100
 
 # all the calculated ocean colour indices used in SAR and regional documents
 regional_doc_indices <- c("spring_timing","fall_timing","Annual_w_average","Winter_w_average","Spring_w_average","Summer_w_average","Fall_w_average")

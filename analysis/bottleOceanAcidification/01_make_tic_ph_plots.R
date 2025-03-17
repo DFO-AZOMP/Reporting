@@ -31,6 +31,12 @@ erroralpha <- 0.5
 eqsize <- 8
 legendsize <- 8
 
+# # temporary comparison of trends pre-2019 and post-2019
+# lm1 <- lm(TIC_avg ~ year, data=df %>% dplyr::filter(year<2019))
+# print(coef(lm1)); print(summary(lm1)$r.squared)
+# lm2 <- lm(TIC_avg ~ year, data=df %>% dplyr::filter(year>=2019&year<=2022))#2023 was way lower, skews regression
+# print(coef(lm2)); print(summary(lm2)$r.squared)
+
 lm1 <- lm(TIC_avg ~ year, data=df)
 eq1 <- paste0("y = ",round(coef(lm1)[2],2),"x + ",round(coef(lm1)[1],2))
 r21 <- paste0("~R^{2} == ", round(summary(lm1)$r.squared,2))

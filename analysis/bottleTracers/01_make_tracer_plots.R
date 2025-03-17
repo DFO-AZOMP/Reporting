@@ -63,7 +63,7 @@ p <- ggplot(df_to_plot) +
     labs(x="Year", y=bquote("CFC-12 concentration (pmol"~kg^{-1}~")")) +
     guides(color = guide_legend(override.aes = list(size=legendsize)),
            fill = guide_legend(override.aes = list(size=legendsize)))
-
+stop()
 ggsave(filename=output_file,
        plot=p,
        dpi=150,

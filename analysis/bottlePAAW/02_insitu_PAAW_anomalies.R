@@ -9,10 +9,10 @@ library(tidyr)
 library(lubridate)
 
 # years to process
-years <- 1997:2023
+years <- 1997:2024
 
 # range of years to use for reference when computing climatology mean, standard deviation, and anomalies
-ref_years <- 2001:2020
+ref_years <- 1999:2020
 
 
 #*******************************************************************************
