@@ -14,7 +14,7 @@ vars <- c('theta',
 # for output
 # for plot output
 height <- 3.875 * 2
-width <- 3.25 * 1.5
+width <- 3.5 * 1.5
 mfrow <- c(3,1)
 filename <- paste(destDirFigures, paste0(paste('station15',
                                                'ar7w',
@@ -26,7 +26,7 @@ png(filename,
     width = width , height = height, units = 'in',
     pointsize = 12, res = 250)
 par(mfrow = mfrow)
-par(oma = c(2.5, 0, 2.75, 0))
+par(oma = c(2.5, 0, 0.5, 1))
 mar <- c(1, 3.5, 1, 2)
 for(var in vars){
   # set up various plotting parameters
@@ -43,13 +43,13 @@ for(var in vars){
   R <- ']'
   L <- '['
   zlab <- switch(var,
-                 'theta'= bquote(bold(theta * .(L) * degree * "C" * .(R))),
+                 'theta'= bquote(theta * .(L) * degree * "C" * .(R)),
                  'thetaAnomaly' = getAnomalyLabel('thetaAnomaly', bold = TRUE),
-                 'salinity' = bquote(bold(.(gettext('Practical Salinity', domain = 'R-oce')))),
+                 'salinity' = bquote(.(gettext('Practical Salinity', domain = 'R-oce'))),
                  'salinityAnomaly' = getAnomalyLabel('salinityAnomaly', bold = TRUE),
-                 'sigmaTheta' = bquote(bold(sigma[theta] *' '* .(L) * kg/m^3 * .(R))),
+                 'sigmaTheta' = bquote(sigma[theta] *' '* .(L) * kg/m^3 * .(R)),
                  'sigmaThetaAnomaly' = getAnomalyLabel('sigmaThetaAnomaly', bold = TRUE),
-                 'theta2'= bquote(bold(.(gettext('theta', domain = 'R-oce')) * .(L) * degree * "C" * .(R))),
+                 'theta2'= bquote(.(gettext('theta', domain = 'R-oce')) * .(L) * degree * "C" * .(R)),
                  'thetaAnomaly2' = getAnomalyLabel('thetaAnomaly', bold = TRUE),
                  'salinity2' = bquote(bold(.(gettext('Practical Salinity', domain = 'R-oce')))),
                  'salinityAnomaly2' = getAnomalyLabel('salinityAnomaly', bold = TRUE),
@@ -128,8 +128,11 @@ for(var in vars){
   xtics <- axis.POSIXct(1L, labels = FALSE)
   if(axes){
     axis.POSIXct(1L, at = xtics, format = '%Y')
+    mtext('Year', side = 1, line = 2.1, cex = 4/5)
   }
   # add station sampling times
   plotStationLocations(distance = ctdtime, plabel = -100)
+  ## color palette label
+  mtext(text = zlab, side = 4, line = 1.7, cex = 4/5)
 }
 dev.off()
