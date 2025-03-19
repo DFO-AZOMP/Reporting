@@ -5,18 +5,20 @@ library(ggplot2)
 source("analysis/common/make_scorecards.R")
 
 # years to process
-years <- 1997:2023
+years <- 1997:2024
 
 # range of reference years that were used in the climatology
 ref_years <- 1999:2020
 
-report_year <- 2023
+report_year <- 2024
 
 
 #*******************************************************************************
 
 input_file <- "analysis/bottleChla/data/AZOMPChla.txt"
 output_file <- paste0("analysis/bottleChla/figures/",report_year,"/",gsub(".txt","",basename(input_file)),"Scorecard_",paste0(range(years),collapse="-"),"_ref",paste0(range(ref_years),collapse="-"),".png")
+
+dir.create(dirname(output_file), recursive=TRUE, showWarnings=FALSE)
 
 img_width <- 2200
 img_height <- 500
@@ -25,7 +27,7 @@ img_height <- 500
 # region/polygon abbreviations used in the input file (will filter input to use these polygons only)
 region_str <- c("GS", "CLS", "LAS")
 # corresponding region/polygon labels that will appear on the plot
-region_lbl <- c("Greenland Shelf", "Central Labrador Sea", "Hamilton Bank")
+region_lbl <- c("GS","CLS","HB")#c("Greenland Shelf", "Central Labrador Sea", "Hamilton Bank")
 
 # variable name used in the input file
 variable_str <- "Chlorophyll_A_0_100"

@@ -12,7 +12,7 @@ library(tidyr)
 library(caTools) # for integration of water column
 
 # years to process
-years <- 1997:2023
+years <- 1997:2024
 
 # use value integrated over depth for climatologies and anomalies, or mean value over depth?
 integrated_depth <- TRUE

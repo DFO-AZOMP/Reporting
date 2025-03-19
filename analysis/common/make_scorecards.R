@@ -19,7 +19,8 @@ make_scorecards <- function(df_anomaly, df_climatology, variable_str, variable_l
         dplyr::left_join(y=vdf,by=c("variable")) %>%
         dplyr::mutate(region=factor(region, levels=region_str),
                       label=ifelse(is.na(anom_value), "", paste(sprintf(square_format, anom_value))),
-                      value_tmp=ifelse(anom_value>collims[2], collims[2], ifelse(anom_value< collims[1], collims[1], anom_value)))
+                      value_tmp=ifelse(anom_value>collims[2], collims[2], ifelse(anom_value< collims[1], collims[1], anom_value))) %>%
+        dplyr::mutate(whitetext=value_tmp<(-2) | value_tmp>2)
     # modify clim data (\U00B1 gives the plus-minus sign)
     df_climatology <- df_climatology %>%
         dplyr::filter(region %in% region_str) %>%
@@ -34,7 +35,8 @@ make_scorecards <- function(df_anomaly, df_climatology, variable_str, variable_l
         # heat plot
         geom_tile(data=df_anomaly,aes(year,region,fill=value_tmp), position=position_identity()) +
         # text overlaid in heat plot cells
-        geom_text(data=df_anomaly,aes(year,region,label=label), position=position_identity(),size=3.5) +
+        geom_text(data=df_anomaly,aes(year,region,label=label,color=whitetext), position=position_identity(),size=4.4) +
+        scale_color_manual(values=c("white","black"),breaks=c(TRUE,FALSE),guide="none") +
         # text at right margin
         geom_text(data=df_climatology,aes(Inf,region,label=label), position=position_identity(),hjust=-0.1,size=5) +
         theme_bw() +

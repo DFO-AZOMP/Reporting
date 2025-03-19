@@ -19,6 +19,8 @@ input_file <- "analysis/bottleNutrients/data/AZOMPNutrients.txt"
 output_file1 <- paste0("analysis/bottleNutrients/figures/",report_year,"/",gsub(".txt","",basename(input_file)),"ShallowScorecard_",paste0(range(years),collapse="-"),"_ref",paste0(range(ref_years),collapse="-"),".png")
 output_file2 <- paste0("analysis/bottleNutrients/figures/",report_year,"/",gsub(".txt","",basename(input_file)),"DeepScorecard_",paste0(range(years),collapse="-"),"_ref",paste0(range(ref_years),collapse="-"),".png")
 
+dir.create(dirname(output_file1), recursive=TRUE, showWarnings=FALSE)
+
 img_width <- 2200
 img_height <- 1200
 
@@ -26,7 +28,7 @@ img_height <- 1200
 # region/polygon abbreviations used in the input file (will filter input to use these polygons only)
 region_str <- c("GS", "CLS", "LAS")
 # corresponding region/polygon labels that will appear on the plot
-region_lbl <- c("Greenland Shelf", "Central Labrador Sea", "Hamilton Bank")
+region_lbl <- c("GS","CLS","HB")#c("Greenland Shelf", "Central Labrador Sea", "Hamilton Bank")
 
 
 #*******************************************************************************

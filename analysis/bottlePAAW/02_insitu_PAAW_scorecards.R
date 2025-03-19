@@ -5,10 +5,10 @@ library(ggplot2)
 source("analysis/common/make_scorecards.R")
 
 # years to process
-years <- 1997:2023
+years <- 1997:2024
 
 # range of reference years that were used in the climatology
-ref_years <- 2001:2020
+ref_years <- 1999:2020
 
 report_year <- 2024
 
@@ -18,6 +18,8 @@ report_year <- 2024
 input_file <- "analysis/bottlePAAW/data/AZOMPPAAW.txt"
 output_file <- paste0("analysis/bottlePAAW/figures/",report_year,"/",gsub(".txt","",basename(input_file)),"Scorecard_",paste0(range(years),collapse="-"),"_ref",paste0(range(ref_years),collapse="-"),".png")
 
+dir.create(dirname(output_file), recursive=TRUE, showWarnings=FALSE)
+
 img_width <- 2200
 img_height <- 500
 
@@ -25,7 +27,7 @@ img_height <- 500
 # region/polygon abbreviations used in the input file (will filter input to use these polygons only)
 region_str <- c("GS", "CLS", "HB")
 # corresponding region/polygon labels that will appear on the plot
-region_lbl <- c("Greenland Shelf", "Central Labrador Sea", "Hamilton Bank")
+region_lbl <- c("GS","CLS","HB")#c("Greenland Shelf", "Central Labrador Sea", "Hamilton Bank")
 
 # variable name used in the input file
 variable_str <- "PAAW"
@@ -51,7 +53,8 @@ gt <- make_scorecards(df_anomaly=df_anomaly,
                       region_str = region_str,
                       region_lbl = region_lbl,
                       first_year = min(years),
-                      last_year = max(years))
+                      last_year = max(years),
+                      colvals=c('#004900','#007d00','#32af00','#FFFFFF','#FFB255','#FF8C00','#a65c00'))
 
 ggsave(filename=output_file,
        plot=gt,
