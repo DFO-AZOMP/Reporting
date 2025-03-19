@@ -132,17 +132,19 @@ for v, cm in zip(phy_vars, cmaps):
                         {
                             'longitude':pd.cut(ix.loc[index, 'longitude'], xgrid, labels=xgrid[:-1]+boxsize/2), 
                             'latitude':pd.cut(ix.loc[index, 'latitude'], ygrid, labels=ygrid[:-1]+boxsize/2), 
+                            'year':ix.loc[index, 'year'],
                             'variable':ix.loc[index, varname]
                         }
                     )
-                    grid = df.groupby(['latitude', 'longitude'])['variable'].mean().unstack()
-                    clim = grid
+                    grid = df.groupby(['latitude', 'longitude', 'year']).mean().unstack()
+                    clim = pd.DataFrame(grid.mean(axis=1)).reset_index().pivot(index='latitude', columns='longitude')
+                    print('hello!!')
 
                     min_year = ix.loc[index, 'year'].min()
                     title = f'{season.capitalize()} ({pd.Timestamp(year=1900, month=season_months[season][0], day=1).month_name()}-{pd.Timestamp(year=1900, month=season_months[season][-1], day=1).month_name()})'
                     title = f'Climatology ({min_year}-{clim_year})\nFull Year' if season == 'year' else title
                     ax.set_title(title, loc='left', fontweight='bold')
-                    param = ax.pcolormesh(X, Y, grid, cmap=cm, vmin=varinfo[varname]['vmin'], vmax=varinfo[varname]['vmax'], transform=transform)
+                    param = ax.pcolormesh(X, Y, clim, cmap=cm, vmin=varinfo[varname]['vmin'], vmax=varinfo[varname]['vmax'], transform=transform)
                 elif plot == 'analysis_year':
                     index = (season_index) & (ix.year == analysis_year)
                     df = pd.DataFrame(
@@ -173,7 +175,7 @@ for v, cm in zip(phy_vars, cmaps):
         # plt.show()
         title = varinfo[varname]['title']
         fig.suptitle(f'{title} Mean from {d[0]}-{d[1]} dbar', y=0.915)  
-        fig.savefig(f'figures/{analyis_year}/grid/{varname}_seasonal_map.png', bbox_inches='tight', dpi=350)
+        fig.savefig(f'figures/{analysis_year}/grid/{varname}_seasonal_map.png', bbox_inches='tight', dpi=350)
         plt.close(fig)
 
 # repeat above for just full year as standalone figure
@@ -231,16 +233,17 @@ for v, cm in zip(phy_vars, cmaps):
                     {
                         'longitude':pd.cut(ix.loc[index, 'longitude'], xgrid, labels=xgrid[:-1]+boxsize/2), 
                         'latitude':pd.cut(ix.loc[index, 'latitude'], ygrid, labels=ygrid[:-1]+boxsize/2), 
+                        'year':ix.loc[index, 'year'],
                         'variable':ix.loc[index, varname]
                     }
                 )
-                grid = df.groupby(['latitude', 'longitude'])['variable'].mean().unstack()
-                clim = grid
+                grid = df.groupby(['latitude', 'longitude', 'year']).mean().unstack()
+                clim = pd.DataFrame(grid.mean(axis=1)).reset_index().pivot(index='latitude', columns='longitude')
 
                 min_year = ix.loc[index, 'year'].min()
                 title = f'Climatology ({min_year}-{clim_year})'
                 ax.set_title(title, loc='left', fontweight='bold')
-                param = ax.pcolormesh(X, Y, grid, cmap=cm, vmin=varinfo[varname]['vmin'], vmax=varinfo[varname]['vmax'], transform=transform)
+                param = ax.pcolormesh(X, Y, clim, cmap=cm, vmin=varinfo[varname]['vmin'], vmax=varinfo[varname]['vmax'], transform=transform)
             elif plot == 'analysis_year':
                 index = ix.year == analysis_year
                 df = pd.DataFrame(

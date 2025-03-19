@@ -3,6 +3,7 @@
 import pandas as pd
 
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 import seaborn as sns
 sns.set_theme(context='paper', style='ticks', palette='colorblind')
 
@@ -32,11 +33,28 @@ v = 'TEMP_0-50dbar'
 # initialize figure
 fig, ax = plt.subplots()
 # create time array
-t = [pd.Timestamp(year=y, month=m, day=1) for y in [2023, 2024] for m in range(1, 13)]
+t = pd.Series([pd.Timestamp(year=y, month=m, day=1) for y in [2023, 2024] for m in range(1, 13)])
+td = pd.Timedelta(days=15)
 
-for year in monthly_means.index:
-    p = monthly_means.loc[year, v]  
-    p = pd.concat((p, p))  
-    ax.plot(t, p, linewidth=0.2, color='grey')
+c = pd.concat((clim.loc[v], clim.loc[v]))
+s = pd.concat((std.loc[v], std.loc[v]))
+ax.plot(t+td, c, linewidth=3, label='climatology')
+ax.fill_between(t+td, c-s, c+s, alpha=0.3, label=None)
 
+p = monthly_means.loc[(2023,2024), v].stack()
+ax.plot(t+td, p, linewidth=3, label=f'{years_of_interest[0]}-{years_of_interest[1]}')
 
+ax.set_xticks(t)
+# hide major tick labels
+ax.set_xticklabels('')
+
+# customize tick labels
+ax.set_xticks(t+td, minor=True)
+ax.set_xticklabels([tick.strftime('%b')[0] for tick in t], minor=True)
+ax.tick_params(axis='x', which='minor', length=0)
+ax.axvline(pd.Timestamp(year=2024, month=1, day=1), color='black')
+ax.set_xlim((t.min(), t.max()+pd.Timedelta(weeks=4)))
+
+ax.set_ylabel(f'T ({chr(176)}C)')
+
+plt.show()
