@@ -344,8 +344,8 @@ for plot, ax in zip(['climatology', 'analysis_year'], axes):
         )
         grid = df.groupby(['latitude', 'longitude'])['variable'].count().unstack()
         min_year = ix.loc[index, 'year'].min()
-        title = f'Climatology ({min_year}-{clim_year})'
-        ax.set_title(f'{title}  ({sum(index)} Profiles)', loc='left', fontweight='bold')
+        title = f'Climatology ({min_year}-{clim_year}'
+        ax.set_title(f'{title},\n{sum(index)} Profiles)', loc='left', fontweight='bold')
         full = ax.pcolormesh(X, Y, grid, cmap=cmo.cm.amp, transform=transform)
         cbax = fig.add_axes([0.05, -0.15, 0.28, 0.04])
         cb = plt.colorbar(full, orientation='horizontal', extend='both', cax=cbax)
