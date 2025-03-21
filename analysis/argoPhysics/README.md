@@ -4,7 +4,7 @@ This directory contains code for analyzing _physical_ argo data: temperature, sa
 
 Data scripts:
 
--`fetch_process_data.py`: the workhorse script, fetches Argo data over errdap via the python package `argopy`. It then computes the mean values and standard deviations of the desired variables. Creates the data file `data/argo_physical_means.csv`.
+- `fetch_process_data.py`: the workhorse script, fetches Argo data over errdap via the python package `argopy`. It then computes the mean values and standard deviations of the desired variables. Creates the data file `data/argo_physical_means.csv`.
 - `calculate_anomalies.py`: compute anomalies relative to a defined climatology time period, also adds some metadata variables (ex. profile month for use in seasonal analysis). Creates the data files `data/argo_physical_means_anomalies.csv`.
 
 Plotting and analysis scripts:
@@ -23,7 +23,7 @@ The climatology is computed by taking the mean of the yearly means from 2002-202
 
 ![histogram figure](figures/2024/grid/histogram_map.png)
 
-In the gridded climatology, some cells are masked out if (1) maximum pressure of the Argo profiles indicates insufficient depth or (2) there are too few profiles to create a reliable value. The masks are shown in the figure below along with their criteria. 
+In the gridded climatology, some cells are masked out if (1) maximum pressure of the Argo profiles indicates insufficient depth or (2) there are too few profiles to create a reliable value. The masks are shown in the figure below along with their criteria, where black grid cells are masked out. 
 
 ![mask figure](figures/2024/grid/masks_map.png)
 
