@@ -40,6 +40,7 @@ if fresh:
 
     means = {f'{v}{e}_{d}':ix.shape[0]*[pd.NA] for v in phy_vars for e in err_var for d in [f'{dr[0]}-{dr[1]}dbar' for dr in depth_ranges]}
     means['MLD'] = ix.shape[0]*[pd.NA]
+    means['PRES_MAX'] = ix.shape[0]*[pd.NA]
 
     ix = pd.concat([ix, pd.DataFrame(means)], axis=1)
 
@@ -74,7 +75,9 @@ for index, row in ix.loc[ix.MLD.isna()].iterrows():
     
     if ds.dims['N_POINTS'] > 3:
         ix.loc[index, 'MLD'] = mixed_layer(ds, 0.3)
+        ix.loc[index, 'PRES_MAX'] = ds['PRES'].max().item()
     
+    sys.stdout.write(f' (max pres {ix.loc[index, "PRES_MAX"]})... ')
     sys.stdout.write('done\n')
 
 ix.to_csv('data/argo_physical_means.csv')
