@@ -48,7 +48,7 @@ else:
     ix = pd.read_csv('data/argo_physical_means.csv').drop('Unnamed: 0', axis=1)
 
 for index, row in ix.loc[ix.MLD.isna()].iterrows():
-    sys.stdout.write(f'[{index}/{ix.shape[0]} ({100*index/ix.shape[0]:.2f}%)] Processing {row.file}...')
+    sys.stdout.write(f'[{index+1}/{ix.shape[0]} ({100*index/ix.shape[0]:.2f}%)] Processing {row.file}...')
 
     data = argopy.DataFetcher().profile(row.wmo, row.cycle)
 
