@@ -23,6 +23,7 @@ lab_sea = [-67, -43, 55, 62.5]
 # map extent just outside
 extent  = [-67, -42, 54.5, 63]
 
+
 # variable name list to use for plots
 phy_vars = ['TEMP', 'PSAL', 'SA', 'SIG0']
 cmaps = [cmo.cm.thermal, cmo.cm.haline, cmo.cm.haline, cmo.cm.dense]
@@ -43,10 +44,10 @@ varinfo = {
     'SA_100-500dbar':{'vmin':34.85, 'vmax':35.15, 'delta':0.105, 'unit':' (g kg$^{-1}$)', 'label':'Abs. Salinity', 'title':'Absolute Salinity'},
     'SA_500-1000dbar':{'vmin':35.00, 'vmax':35.09, 'delta':0.08, 'unit':' (g kg$^{-1}$)', 'label':'Abs. Salinity', 'title':'Absolute Salinity'},
     'SA_1000-2000dbar':{'vmin':35.035, 'vmax':35.08, 'delta':0.025, 'unit':' (g kg$^{-1}$)', 'label':'Abs. Salinity', 'title':'Absolute Salinity'},
-    'SIG0_0-50dbar':{'vmin':25.9, 'vmax':27.8, 'delta':1.5, 'unit':' (kg L$^{-1}$)', 'label':'$\sigma_0$', 'title':'Potential Density'},
-    'SIG0_100-500dbar':{'vmin':27.49, 'vmax':27.69, 'delta':0.14, 'unit':' (kg L$^{-1}$)', 'label':'$\sigma_0$', 'title':'Potential Density'},
-    'SIG0_500-1000dbar':{'vmin':27.67, 'vmax':27.74, 'delta':0.06, 'unit':' (kg L$^{-1}$)', 'label':'$\sigma_0$', 'title':'Potential Density'},
-    'SIG0_1000-2000dbar':{'vmin':27.725, 'vmax':27.775, 'delta':0.04, 'unit':' (kg L$^{-1}$)', 'label':'$\sigma_0$', 'title':'Potential Density'},
+    'SIG0_0-50dbar':{'vmin':25.9, 'vmax':27.8, 'delta':1.5, 'unit':' (kg m$^{-3}$)', 'label':'$\sigma_0$', 'title':'Potential Density'},
+    'SIG0_100-500dbar':{'vmin':27.49, 'vmax':27.69, 'delta':0.14, 'unit':' (kg m$^{-3}$)', 'label':'$\sigma_0$', 'title':'Potential Density'},
+    'SIG0_500-1000dbar':{'vmin':27.67, 'vmax':27.74, 'delta':0.06, 'unit':' (kg m$^{-3}$)', 'label':'$\sigma_0$', 'title':'Potential Density'},
+    'SIG0_1000-2000dbar':{'vmin':27.725, 'vmax':27.775, 'delta':0.04, 'unit':' (kg m$^{-3}$)', 'label':'$\sigma_0$', 'title':'Potential Density'},
 }
 
 # define grid edges
