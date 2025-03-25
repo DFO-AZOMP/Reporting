@@ -4,9 +4,9 @@ DOXY_100-500dbar,Diss. Oxygen,Dissolved Oxygen, ($\mathregular{\mu}$mol kg$^{-1}
 DOXY_500-1000dbar,Diss. Oxygen,Dissolved Oxygen, ($\mathregular{\mu}$mol kg$^{-1}$),240,340,60
 DOXY_1000-2000dbar,Diss. Oxygen,Dissolved Oxygen, ($\mathregular{\mu}$mol kg$^{-1}$),240,340,60
 DOXY_ADJUSTED_0-50dbar,Diss. Oxygen,Dissolved Oxygen, ($\mathregular{\mu}$mol kg$^{-1}$),260,340,60
-DOXY_ADJUSTED_100-500dbar,Diss. Oxygen,Dissolved Oxygen, ($\mathregular{\mu}$mol kg$^{-1}$),260,340,60
-DOXY_ADJUSTED_500-1000dbar,Diss. Oxygen,Dissolved Oxygen, ($\mathregular{\mu}$mol kg$^{-1}$),260,340,60
-DOXY_ADJUSTED_1000-2000dbar,Diss. Oxygen,Dissolved Oxygen, ($\mathregular{\mu}$mol kg$^{-1}$),260,340,60
+DOXY_ADJUSTED_100-500dbar,Diss. Oxygen,Dissolved Oxygen, ($\mathregular{\mu}$mol kg$^{-1}$),270,300,40
+DOXY_ADJUSTED_500-1000dbar,Diss. Oxygen,Dissolved Oxygen, ($\mathregular{\mu}$mol kg$^{-1}$),270,300,40
+DOXY_ADJUSTED_1000-2000dbar,Diss. Oxygen,Dissolved Oxygen, ($\mathregular{\mu}$mol kg$^{-1}$),270,290,40
 CHLA_0-50dbar,Chlorophyll,Chlorophyll, (mg m$^{-3}$),0,6,1
 CHLA_100-500dbar,Chlorophyll,Chlorophyll, (mg m$^{-3}$),0,6,1
 CHLA_500-1000dbar,Chlorophyll,Chlorophyll, (mg m$^{-3}$),0,6,1
