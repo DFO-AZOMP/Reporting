@@ -1,21 +1,41 @@
-var,label,long_name,unit,vmin,vmax
-DOXY_0-50dbar,Diss. Oxygen,Dissolved Oxygen,$\mu$mol kg$^{-1}$,0,400
-DOXY_100-500dbar,Diss. Oxygen,Dissolved Oxygen,$\mu$mol kg$^{-1}$,0,400
-DOXY_500-1000dbar,Diss. Oxygen,Dissolved Oxygen,$\mu$mol kg$^{-1}$,0,400
-DOXY_1000-2000dbar,Diss. Oxygen,Dissolved Oxygen,$\mu$mol kg$^{-1}$,0,400
-CHLA_0-50dbar,Chlorophyll,Chlorophyll,mg m$^{-3}$,0,6
-CHLA_100-500dbar,Chlorophyll,Chlorophyll,mg m$^{-3}$,0,6
-CHLA_500-1000dbar,Chlorophyll,Chlorophyll,mg m$^{-3}$,0,6
-CHLA_1000-2000dbar,Chlorophyll,Chlorophyll,mg m$^{-3}$,0,6
-BBP700_0-50dbar,$b_{bp}$,Backscatter,$x1000 m$^{-1}$,0,4
-BBP700_100-500dbar,$b_{bp}$,Backscatter,$x1000 m$^{-1}$,0,4
-BBP700_500-1000dbar,$b_{bp}$,Backscatter,$x1000 m$^{-1}$,0,4
-BBP700_1000-2000dbar,$b_{bp}$,Backscatter,$x1000 m$^{-1}$,0,4
-PH_IN_SITU_TOTAL_0-50dbar,pH,pH,,7,8
-PH_IN_SITU_TOTAL_100-500dbar,pH,pH,,7,8
-PH_IN_SITU_TOTAL_500-1000dbar,pH,pH,,7,8
-PH_IN_SITU_TOTAL_1000-2000dbar,pH,pH,,7,8
-NITRATE_0-50dbar,NO$_3$,Nitrate,$\mu$mol kg$^{-1}$,0,30
-NITRATE_100-500dbar,NO$_3$,Nitrate,$\mu$mol kg$^{-1}$,0,30
-NITRATE_500-1000dbar,NO$_3$,Nitrate,$\mu$mol kg$^{-1}$,0,30
-NITRATE_1000-2000dbar,NO$_3$,Nitrate,$\mu$mol kg$^{-1}$,0,30
+var,label,long_name,unit,vmin,vmax,delta
+DOXY_0-50dbar,Diss. Oxygen,Dissolved Oxygen, ($\mathregular{\mu}$mol kg$^{-1}$),240,340,60
+DOXY_100-500dbar,Diss. Oxygen,Dissolved Oxygen, ($\mathregular{\mu}$mol kg$^{-1}$),240,340,60
+DOXY_500-1000dbar,Diss. Oxygen,Dissolved Oxygen, ($\mathregular{\mu}$mol kg$^{-1}$),240,340,60
+DOXY_1000-2000dbar,Diss. Oxygen,Dissolved Oxygen, ($\mathregular{\mu}$mol kg$^{-1}$),240,340,60
+DOXY_ADJUSTED_0-50dbar,Diss. Oxygen,Dissolved Oxygen, ($\mathregular{\mu}$mol kg$^{-1}$),260,340,60
+DOXY_ADJUSTED_100-500dbar,Diss. Oxygen,Dissolved Oxygen, ($\mathregular{\mu}$mol kg$^{-1}$),260,340,60
+DOXY_ADJUSTED_500-1000dbar,Diss. Oxygen,Dissolved Oxygen, ($\mathregular{\mu}$mol kg$^{-1}$),260,340,60
+DOXY_ADJUSTED_1000-2000dbar,Diss. Oxygen,Dissolved Oxygen, ($\mathregular{\mu}$mol kg$^{-1}$),260,340,60
+CHLA_0-50dbar,Chlorophyll,Chlorophyll, (mg m$^{-3}$),0,6,1
+CHLA_100-500dbar,Chlorophyll,Chlorophyll, (mg m$^{-3}$),0,6,1
+CHLA_500-1000dbar,Chlorophyll,Chlorophyll, (mg m$^{-3}$),0,6,1
+CHLA_1000-2000dbar,Chlorophyll,Chlorophyll, (mg m$^{-3}$),0,6,1
+CHLA_ADJUSTED_0-50dbar,Chlorophyll,Chlorophyll, (mg m$^{-3}$),0,6,1
+CHLA_ADJUSTED_100-500dbar,Chlorophyll,Chlorophyll, (mg m$^{-3}$),0,6,1
+CHLA_ADJUSTED_500-1000dbar,Chlorophyll,Chlorophyll, (mg m$^{-3}$),0,6,1
+CHLA_ADJUSTED_1000-2000dbar,Chlorophyll,Chlorophyll, (mg m$^{-3}$),0,6,1
+BBP700_0-50dbar,$b_{bp}$,Backscatter, (x1000 m$^{-1}$),0,4,1
+BBP700_100-500dbar,$b_{bp}$,Backscatter, (x1000 m$^{-1}$),0,4,1
+BBP700_500-1000dbar,$b_{bp}$,Backscatter, (x1000 m$^{-1}$),0,4,1
+BBP700_1000-2000dbar,$b_{bp}$,Backscatter, (x1000 m$^{-1}$),0,4,1
+BBP700_ADJUSTED_0-50dbar,$b_{bp}$,Backscatter, (x1000 m$^{-1}$),0,4,1
+BBP700_ADJUSTED_100-500dbar,$b_{bp}$,Backscatter, (x1000 m$^{-1}$),0,4,1
+BBP700_ADJUSTED_500-1000dbar,$b_{bp}$,Backscatter, (x1000 m$^{-1}$),0,4,1
+BBP700_ADJUSTED_1000-2000dbar,$b_{bp}$,Backscatter, (x1000 m$^{-1}$),0,4,1
+PH_IN_SITU_TOTAL_0-50dbar,pH,pH,'',7,8,1
+PH_IN_SITU_TOTAL_100-500dbar,pH,pH,'',7,8,1
+PH_IN_SITU_TOTAL_500-1000dbar,pH,pH,'',7,8,1
+PH_IN_SITU_TOTAL_1000-2000dbar,pH,pH,'',7,8,1
+PH_IN_SITU_TOTAL_ADJUSTED_0-50dbar,pH,pH,'',7,8,1
+PH_IN_SITU_TOTAL_ADJUSTED_100-500dbar,pH,pH,'',7,8,1
+PH_IN_SITU_TOTAL_ADJUSTED_500-1000dbar,pH,pH,'',7,8,1
+PH_IN_SITU_TOTAL_ADJUSTED_1000-2000dbar,pH,pH,'',7,8,1
+NITRATE_0-50dbar,NO$_3$,Nitrate, ($\mathregular{\mu}$mol kg$^{-1}$),0,30,1
+NITRATE_100-500dbar,NO$_3$,Nitrate, ($\mathregular{\mu}$mol kg$^{-1}$),0,30,1
+NITRATE_500-1000dbar,NO$_3$,Nitrate, ($\mathregular{\mu}$mol kg$^{-1}$),0,30,1
+NITRATE_1000-2000dbar,NO$_3$,Nitrate, ($\mathregular{\mu}$mol kg$^{-1}$),0,30,1
+NITRATE_ADJUSTED_0-50dbar,NO$_3$,Nitrate, ($\mathregular{\mu}$mol kg$^{-1}$),0,30,1
+NITRATE_ADJUSTED_100-500dbar,NO$_3$,Nitrate, ($\mathregular{\mu}$mol kg$^{-1}$),0,30,1
+NITRATE_ADJUSTED_500-1000dbar,NO$_3$,Nitrate, ($\mathregular{\mu}$mol kg$^{-1}$),0,30,1
+NITRATE_ADJUSTED_1000-2000dbar,NO$_3$,Nitrate, ($\mathregular{\mu}$mol kg$^{-1}$),0,30,1
