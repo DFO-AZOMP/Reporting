@@ -2,7 +2,7 @@
 import pandas as pd
 
 # load mean data
-df = pd.read_csv('../Data/argo_physical_means.csv').drop('Unnamed: 0', axis=1)
+df = pd.read_csv('data/argo_physical_means.csv').drop('Unnamed: 0', axis=1)
 df['date'] = df.date.apply(pd.Timestamp)
 
 # anomaly baseline - less than or including this year

@@ -23,6 +23,7 @@ lab_sea = [-67, -43, 55, 62.5]
 # map extent just outside
 extent  = [-67, -42, 54.5, 63]
 
+
 # variable name list to use for plots
 phy_vars = ['TEMP', 'PSAL', 'SA', 'SIG0']
 cmaps = [cmo.cm.thermal, cmo.cm.haline, cmo.cm.haline, cmo.cm.dense]
@@ -43,10 +44,10 @@ varinfo = {
     'SA_100-500dbar':{'vmin':34.85, 'vmax':35.15, 'delta':0.105, 'unit':' (g kg$^{-1}$)', 'label':'Abs. Salinity', 'title':'Absolute Salinity'},
     'SA_500-1000dbar':{'vmin':35.00, 'vmax':35.09, 'delta':0.08, 'unit':' (g kg$^{-1}$)', 'label':'Abs. Salinity', 'title':'Absolute Salinity'},
     'SA_1000-2000dbar':{'vmin':35.035, 'vmax':35.08, 'delta':0.025, 'unit':' (g kg$^{-1}$)', 'label':'Abs. Salinity', 'title':'Absolute Salinity'},
-    'SIG0_0-50dbar':{'vmin':25.9, 'vmax':27.8, 'delta':1.5, 'unit':' (kg L$^{-1}$)', 'label':'$\sigma_0$', 'title':'Potential Density'},
-    'SIG0_100-500dbar':{'vmin':27.49, 'vmax':27.69, 'delta':0.14, 'unit':' (kg L$^{-1}$)', 'label':'$\sigma_0$', 'title':'Potential Density'},
-    'SIG0_500-1000dbar':{'vmin':27.67, 'vmax':27.74, 'delta':0.06, 'unit':' (kg L$^{-1}$)', 'label':'$\sigma_0$', 'title':'Potential Density'},
-    'SIG0_1000-2000dbar':{'vmin':27.725, 'vmax':27.775, 'delta':0.04, 'unit':' (kg L$^{-1}$)', 'label':'$\sigma_0$', 'title':'Potential Density'},
+    'SIG0_0-50dbar':{'vmin':25.9, 'vmax':27.8, 'delta':1.5, 'unit':' (kg m$^{-3}$)', 'label':'$\sigma_0$', 'title':'Potential Density'},
+    'SIG0_100-500dbar':{'vmin':27.49, 'vmax':27.69, 'delta':0.14, 'unit':' (kg m$^{-3}$)', 'label':'$\sigma_0$', 'title':'Potential Density'},
+    'SIG0_500-1000dbar':{'vmin':27.67, 'vmax':27.74, 'delta':0.06, 'unit':' (kg m$^{-3}$)', 'label':'$\sigma_0$', 'title':'Potential Density'},
+    'SIG0_1000-2000dbar':{'vmin':27.725, 'vmax':27.775, 'delta':0.04, 'unit':' (kg m$^{-3}$)', 'label':'$\sigma_0$', 'title':'Potential Density'},
 }
 
 # define grid edges
@@ -55,6 +56,7 @@ xgrid = np.arange(lab_sea[0], lab_sea[1]+boxsize, boxsize)
 ygrid = np.arange(lab_sea[2], lab_sea[3]+boxsize, boxsize)
 X, Y = np.meshgrid(xgrid, ygrid)
 
+# read in data
 ix = pd.read_csv('data/argo_physical_means_anomalies.csv').drop('Unnamed: 0', axis=1)
 
 # map setup, formatting
@@ -68,13 +70,27 @@ n = 5 # number of rows
 m = 3 # numberof columns
 bottom = 0.15; left=0.05
 top=1.-bottom; right = 1.-left
-fisasp = (1-bottom-(1-top))/float( 1-left-(1-right) )
+fisasp = (1-bottom-(1-top))/float(1-left-(1-right))
 #widthspace, relative to subplot size
 wspace=0.18  # set to zero for no spacing
 hspace=wspace/float(aspect)
 #fix the figure height
 figheight = 8 # inch
 figwidth = (m + (m-1)*wspace)/float((n+(n-1)*hspace)*aspect)*figheight*fisasp
+
+index = ix.year <= clim_year
+df = pd.DataFrame(
+    {
+        'longitude':pd.cut(ix.loc[index, 'longitude'], xgrid, labels=xgrid[:-1]+boxsize/2), 
+        'latitude':pd.cut(ix.loc[index, 'latitude'], ygrid, labels=ygrid[:-1]+boxsize/2), 
+        'pres':ix.loc[index,'PRES_MAX']
+    }
+)
+
+pres_mask = df.groupby(['latitude', 'longitude'])['pres'].mean().unstack()
+sample_mask = df.groupby(['latitude', 'longitude'])['pres'].count().unstack()
+min_pres = 1200
+min_samples = 40
 
 # loop through and plot each variable
 for v, cm in zip(phy_vars, cmaps):
@@ -132,17 +148,18 @@ for v, cm in zip(phy_vars, cmaps):
                         {
                             'longitude':pd.cut(ix.loc[index, 'longitude'], xgrid, labels=xgrid[:-1]+boxsize/2), 
                             'latitude':pd.cut(ix.loc[index, 'latitude'], ygrid, labels=ygrid[:-1]+boxsize/2), 
+                            'year':ix.loc[index, 'year'],
                             'variable':ix.loc[index, varname]
                         }
                     )
-                    grid = df.groupby(['latitude', 'longitude'])['variable'].mean().unstack()
-                    clim = grid
+                    grid = df.groupby(['latitude', 'longitude', 'year']).mean().unstack()
+                    clim = pd.DataFrame(grid.mean(axis=1)).reset_index().pivot(index='latitude', columns='longitude').mask(pres_mask < min_pres).mask(sample_mask < min_samples)
 
                     min_year = ix.loc[index, 'year'].min()
                     title = f'{season.capitalize()} ({pd.Timestamp(year=1900, month=season_months[season][0], day=1).month_name()}-{pd.Timestamp(year=1900, month=season_months[season][-1], day=1).month_name()})'
                     title = f'Climatology ({min_year}-{clim_year})\nFull Year' if season == 'year' else title
                     ax.set_title(title, loc='left', fontweight='bold')
-                    param = ax.pcolormesh(X, Y, grid, cmap=cm, vmin=varinfo[varname]['vmin'], vmax=varinfo[varname]['vmax'], transform=transform)
+                    param = ax.pcolormesh(X, Y, clim, cmap=cm, vmin=varinfo[varname]['vmin'], vmax=varinfo[varname]['vmax'], transform=transform)
                 elif plot == 'analysis_year':
                     index = (season_index) & (ix.year == analysis_year)
                     df = pd.DataFrame(
@@ -173,7 +190,7 @@ for v, cm in zip(phy_vars, cmaps):
         # plt.show()
         title = varinfo[varname]['title']
         fig.suptitle(f'{title} Mean from {d[0]}-{d[1]} dbar', y=0.915)  
-        fig.savefig(f'figures/{analyis_year}/grid/{varname}_seasonal_map.png', bbox_inches='tight', dpi=350)
+        fig.savefig(f'figures/{analysis_year}/grid/{varname}_seasonal_map.png', bbox_inches='tight', dpi=350)
         plt.close(fig)
 
 # repeat above for just full year as standalone figure
@@ -231,16 +248,17 @@ for v, cm in zip(phy_vars, cmaps):
                     {
                         'longitude':pd.cut(ix.loc[index, 'longitude'], xgrid, labels=xgrid[:-1]+boxsize/2), 
                         'latitude':pd.cut(ix.loc[index, 'latitude'], ygrid, labels=ygrid[:-1]+boxsize/2), 
+                        'year':ix.loc[index, 'year'],
                         'variable':ix.loc[index, varname]
                     }
                 )
-                grid = df.groupby(['latitude', 'longitude'])['variable'].mean().unstack()
-                clim = grid
+                grid = df.groupby(['latitude', 'longitude', 'year']).mean().unstack()
+                clim = pd.DataFrame(grid.mean(axis=1)).reset_index().pivot(index='latitude', columns='longitude').mask(pres_mask < min_pres).mask(sample_mask < min_samples)
 
                 min_year = ix.loc[index, 'year'].min()
                 title = f'Climatology ({min_year}-{clim_year})'
                 ax.set_title(title, loc='left', fontweight='bold')
-                param = ax.pcolormesh(X, Y, grid, cmap=cm, vmin=varinfo[varname]['vmin'], vmax=varinfo[varname]['vmax'], transform=transform)
+                param = ax.pcolormesh(X, Y, clim, cmap=cm, vmin=varinfo[varname]['vmin'], vmax=varinfo[varname]['vmax'], transform=transform)
             elif plot == 'analysis_year':
                 index = ix.year == analysis_year
                 df = pd.DataFrame(
@@ -327,8 +345,8 @@ for plot, ax in zip(['climatology', 'analysis_year'], axes):
         )
         grid = df.groupby(['latitude', 'longitude'])['variable'].count().unstack()
         min_year = ix.loc[index, 'year'].min()
-        title = f'Climatology ({min_year}-{clim_year})'
-        ax.set_title(title, loc='left', fontweight='bold')
+        title = f'Climatology ({min_year}-{clim_year}'
+        ax.set_title(f'{title},\n{sum(index)} Profiles)', loc='left', fontweight='bold')
         full = ax.pcolormesh(X, Y, grid, cmap=cmo.cm.amp, transform=transform)
         cbax = fig.add_axes([0.05, -0.15, 0.28, 0.04])
         cb = plt.colorbar(full, orientation='horizontal', extend='both', cax=cbax)
@@ -353,7 +371,62 @@ sns.histplot(ix.year+0.5, bins=range(ix.year.min(), 2026), ax=axes[-1])
 axes[-1].yaxis.tick_right()
 axes[-1].yaxis.set_label_position("right")
 
-fig.suptitle(f'Profile Histogram, {sum(ix.year <= clim_year) + sum(ix.year == analysis_year)} Total Profiles\n\n', y=1.08)  
+fig.suptitle(f'Profile Histogram\n\n', y=1.08)
 # plt.show()
 fig.savefig(f'figures/{analysis_year}/grid/histogram_map.png', bbox_inches='tight', dpi=350)
+plt.close(fig)
+
+# show masks
+
+# setup
+aspect = 3/5
+n = 1 # number of rows
+m = 2 # numberof columns
+bottom = 0.15; left=0.05
+top=1.-bottom; right = 1.-left
+fisasp = (1-bottom-(1-top))/float( 1-left-(1-right) )
+#widthspace, relative to subplot size
+wspace=0.1  # set to zero for no spacing
+hspace=wspace/float(aspect)
+#fix the figure height
+figheight = 8/5 # inch
+figwidth  = (m + (m-1)*wspace)/float((n+(n-1)*hspace)*aspect)*figheight*fisasp
+
+# create figure, geo axes
+fig = plt.figure(figsize=(figwidth, figheight))
+# axes are climatology (=< clim_year), current year of interest
+axes = [fig.add_subplot(121, projection=projection), fig.add_subplot(122, projection=projection)]
+
+for plot, ax in zip(['pressure', 'samples'], axes):
+
+    ax.set_extent(extent)
+    ax.add_feature(cfeature.GSHHSFeature('low', 
+        edgecolor='black', facecolor=cfeature.COLORS['land']))
+    ax.patch.set_facecolor('lightgrey')
+    if plot == 'pressure':
+        draw_labels = ['left', 'bottom']
+    else:
+        draw_labels = ['bottom']
+
+    gl = ax.gridlines(
+        crs=ccrs.PlateCarree(), draw_labels=draw_labels, color='white', linewidth=0.25,
+        xlocs=mticker.FixedLocator(xgrid), ylocs=mticker.FixedLocator(ygrid),
+        xformatter=lon_formatter, yformatter=lat_formatter,
+        xlabel_style={'size':6}, ylabel_style={'size':6},
+        x_inline=False, y_inline=False
+    )
+
+    plt.subplots_adjust(top=top, bottom=bottom, left=left, right=right, 
+        wspace=wspace, hspace=hspace)
+
+    if plot == 'pressure':
+        ax.set_title(f'Pressure Mask (P > {min_pres})', loc='left', fontweight='bold')
+        ax.pcolormesh(X, Y, (pres_mask > min_pres).astype(int), cmap=plt.cm.gray, transform=transform)
+    elif plot == 'samples':
+        ax.set_title(f'Sample Size Mask  (N > {min_samples})', loc='left', fontweight='bold')
+        ax.pcolormesh(X, Y, (sample_mask > min_samples).astype(int), cmap=plt.cm.gray, transform=transform)
+
+fig.suptitle(f'Grid Masks\n\n', y=1.08)
+# plt.show()
+fig.savefig(f'figures/{analysis_year}/grid/masks_map.png', bbox_inches='tight', dpi=350)
 plt.close(fig)
