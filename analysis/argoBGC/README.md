@@ -26,13 +26,13 @@ Contrast that with the next most populous parameter, chlorophyll:
 ![CHLA histogram figure](figures/2024/grid/CHLA_histogram_map.png)
 
 Timeseries results should be interpreted with similar caution, but may have more value than the gridded products for the more sparse variables: 
-
-<img src="figures/2024/timeseries/DOXY_ADJUSTED_100-500dbar_2year_seasonal_cycle.png" alt="adjusted DOXY seasonal figure" width="200"/>
-<img src="figures/2024/timeseries/CHLA_0-50dbar_2year_seasonal_cycle.png" alt="CHLA seasonal figure" width="200"/>
-
+<p align="middle">
+    <img src="figures/2024/timeseries/DOXY_ADJUSTED_100-500dbar_2year_seasonal_cycle.png" alt="adjusted DOXY seasonal figure" width="500"/>
+    <img src="figures/2024/timeseries/CHLA_0-50dbar_2year_seasonal_cycle.png" alt="CHLA seasonal figure" width="500"/>
+</p>
 
 ## Adjusted vs. Unadjusted Variables
 
 BGC-Argo variables ususally require some form of adjustment before being used scientifically. For oxygen, a gain factor is applied to adjust the whole profile by a multiplicative factor (*DOXY_ADJUSTED = DOXY x G*). This gain factor is computed individually for each sensor. For this reason, I have used the DOXY_ADJUSTED field. The effect can be seen in comparing the standard deviation in above plot which uses DOXY_ADJUSTED and the below which uses raw DOXY:
 
-<img src="figures/2024/timeseries/DOXY_100-500dbar_2year_seasonal_cycle.png" alt="raw DOXY seasonal figure" width="200"/>
+<img src="figures/2024/timeseries/DOXY_100-500dbar_2year_seasonal_cycle.png" alt="raw DOXY seasonal figure" width="500"/>
