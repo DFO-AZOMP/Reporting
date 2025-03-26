@@ -11,8 +11,18 @@ library(dplyr)
 library(ggh4x)
 library(lubridate)
 
+# years to process
+years <- 1996:2024
+
+report_year <- 2024
+
+
+#*******************************************************************************
+
 input_file <- "analysis/bottleOceanAcidification/data/azomp_tic_ph.csv"
-output_file <- "analysis/bottleOceanAcidification/figures/2023/TIC_pH.png"
+output_file <- paste0("analysis/bottleOceanAcidification/figures/",report_year,"/TIC_pH.png")
+
+dir.create(dirname(output_file), recursive=TRUE, showWarnings=FALSE)
 
 df <- read.csv(input_file) %>%
     dplyr::mutate(year=as.numeric(floor(year)),
@@ -69,16 +79,17 @@ p <- ggplot(df_to_plot) +
     geom_text_npc(aes(npcx=0.2,npcy=0.05,label=r22), parse=TRUE, color="red", size=eqsize) +
     theme_bw() +
     scale_color_manual(values=c("darkblue","red"), breaks=c("TIC","pH")) +
-    scale_x_continuous(breaks=seq(1990,year(Sys.Date()),by=4), minor_breaks=1990:year(Sys.Date()), guide="axis_minor") +
+    scale_x_continuous(breaks=seq(1990,year(Sys.Date()),by=2), minor_breaks=1990:year(Sys.Date()), guide="axis_minor") +
     scale_y_continuous(breaks=seq(2140,2175,by=5),
                        sec.axis=sec_axis(~ (.-offset)*1/scalar, name=bquote(pH[total] ~ "(in situ)"), breaks=seq(7.96,8.2,by=0.02))) +
-    theme(axis.text=element_text(size=18),
+    theme(axis.text.x=element_text(angle=45,hjust=1,size=18),
+          axis.text.y=element_text(size=18),
           axis.title.x=element_text(size=20,face="bold"),
           axis.title.y.left=element_text(size=20,face="bold",margin=margin(0,5,0,0)),
           axis.title.y.right=element_text(size=20,face="bold",angle=90,margin=margin(0,0,0,5)),
           plot.title=element_text(size=24, face="bold", hjust=0.5),
           ggh4x.axis.ticks.length.minor = rel(1),
-          legend.position=c(0.8,0.05),
+          legend.position=c(0.8,0.07),
           legend.direction="horizontal",
           legend.title=element_blank(),
           legend.text=element_text(size=20)) +
@@ -91,6 +102,6 @@ ggsave(filename=output_file,
        plot=p,
        dpi=150,
        units="px",
-       width=1800,
-       height=900)
+       width=1900,
+       height=1000)
 
