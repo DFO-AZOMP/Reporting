@@ -13,7 +13,11 @@ Plotting and analysis scripts:
 
 ## Results and Data Volume
 
-The above scripts have been run for all BGC-Argo variables with the exception of irradiance. The robustness of the results, however, vary parameter to parameter. Dissolved oxygen (DOXY) is the only parameter that has sufficient data to reasonably compare recent years to the past, and even then I hesitate to formally call the baseline a "climatology". See the histograms below: 
+The above scripts have been run for all BGC-Argo variables with the exception of irradiance. 
+
+![DOXY histogram figure](figures/2024/grid/DOXY_100-500dbar_map.png)
+
+The robustness of the results, however, vary parameter to parameter. Dissolved oxygen (DOXY) is the only parameter that has sufficient data to reasonably compare recent years to the past, and even then I hesitate to formally call the baseline a "climatology". See the histograms below: 
 
 ![DOXY histogram figure](figures/2024/grid/DOXY_histogram_map.png)
 
