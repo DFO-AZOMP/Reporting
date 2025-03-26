@@ -11,13 +11,17 @@ Plotting and analysis scripts:
 - `gridded_data.py`: compute climatology in grid cells and plot climatology, analysis year, and anomaly. Also produces histogram and mask plots for each variable.
 - `seasonal_climatology.py`: last 2 years of data relative to 2002-2020 climatology.
 
-## Results and Data Volume
+## Results and Data Volume/Quality
 
 The above scripts have been run for all BGC-Argo variables with the exception of irradiance. The robustness of the results, however, vary parameter to parameter. Dissolved oxygen (DOXY) is the only parameter that has sufficient data to reasonably compare recent years to the past, and even then I hesitate to formally call the baseline a "climatology". 
 
 ![DOXY grid figure](figures/2024/grid/DOXY_ADJUSTED_100-500dbar_map.png)
 
 ![DOXY histogram figure](figures/2024/grid/DOXY_ADJUSTED_histogram_map.png)
+
+Due to the lower data volume, I have reduced the requirements to establish a baseline to _N > 10_ samples in each grid cell and _Pmax > 800_. Many older BGC profiles only go down to 1000m, probably due to the higher data volume being transmitted over the slower Argos telemetry system at the time. For this reason I would also be careful interpreting the 1000-2000 dbar depth range figures, as there is reduced data and/or profiles that are contributing that only have measurements down to 1010 dbar for example.
+
+![DOXY mask figure](figures/2024/grid/DOXY_ADJUSTED_masks_map.png)
 
 ## Adjusted vs. Unadjusted Variables
 
