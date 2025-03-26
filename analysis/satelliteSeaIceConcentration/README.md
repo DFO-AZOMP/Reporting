@@ -1,4 +1,4 @@
-Data is from the US National Snow and Ice Data Center.  
+Data is from the Sea Ice Index product (Version 3) from the US National Snow and Ice Data Center.  
 Link for more info: https://nsidc.org/data/g02135/versions/3  
 
 Citation:  
