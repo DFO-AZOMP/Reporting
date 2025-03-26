@@ -144,7 +144,7 @@ for v, cm in zip(bgc_vars, cmaps):
                         }
                     )
                     grid = df.groupby(['latitude', 'longitude', 'year']).mean().unstack()
-                    clim = pd.DataFrame(grid.mean(axis=1)).reset_index().pivot(index='latitude', columns='longitude').mask(pres_mask < min_pres).mask(sample_mask < min_samples)
+                    clim = pd.DataFrame(grid.mean(axis=1)).reset_index().pivot(index='latitude', columns='longitude').mask((pres_mask < min_pres) | (sample_mask < min_samples))
 
                     min_year = ix.loc[index, 'year'].min()
                     title = f'{season.capitalize()} ({pd.Timestamp(year=1900, month=season_months[season][0], day=1).month_name()}-{pd.Timestamp(year=1900, month=season_months[season][-1], day=1).month_name()})'
@@ -256,7 +256,7 @@ for v, cm in zip(bgc_vars, cmaps):
                     }
                 )
                 grid = df.groupby(['latitude', 'longitude', 'year']).mean().unstack()
-                clim = pd.DataFrame(grid.mean(axis=1)).reset_index().pivot(index='latitude', columns='longitude').mask(pres_mask < min_pres).mask(sample_mask < min_samples)
+                clim = pd.DataFrame(grid.mean(axis=1)).reset_index().pivot(index='latitude', columns='longitude').mask((pres_mask < min_pres) | (sample_mask < min_samples))
 
                 min_year = ix.loc[index, 'year'].min()
                 title = f'Climatology ({min_year}-{clim_year})'
@@ -444,10 +444,10 @@ for v in bgc_vars:
 
         if plot == 'pressure':
             ax.set_title(f'Pressure Mask (P > {min_pres})', loc='left', fontweight='bold')
-            ax.pcolormesh(X, Y, (pres_mask > min_pres).astype(int), cmap=plt.cm.gray, transform=transform)
+            ax.pcolormesh(X, Y, (pres_mask >= min_pres).astype(int), cmap=plt.cm.gray, transform=transform)
         elif plot == 'samples':
             ax.set_title(f'Sample Size Mask  (N > {min_samples})', loc='left', fontweight='bold')
-            ax.pcolormesh(X, Y, (sample_mask > min_samples).astype(int), cmap=plt.cm.gray, transform=transform)
+            ax.pcolormesh(X, Y, (sample_mask >= min_samples).astype(int), cmap=plt.cm.gray, transform=transform)
 
     fig.suptitle(f'Grid Masks\n\n', y=1.08)
     # plt.show()
