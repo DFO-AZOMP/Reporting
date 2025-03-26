@@ -57,10 +57,16 @@ dmonths <- month(ddates)
 winter_months <- 1:3
 
 # calculate raster values
-clim_mean <- data[[dmonths %in% winter_months & dyears %in% ref_years]] %>% mean(na.rm=TRUE)
-clim_sd <- data[[dmonths %in% winter_months & dyears %in% ref_years]] %>% stdev(na.rm=TRUE)
+clim_ind <- dmonths %in% winter_months & dyears %in% ref_years
+clim_mean <- data[[clim_ind]] %>% mean(na.rm=TRUE)
+clim_sd <- data[[clim_ind]] %>% stdev(na.rm=TRUE)
 current_year <- data[[dmonths %in% winter_months & dyears==report_year]] %>% mean(na.rm=TRUE)
 anom <- (current_year-clim_mean)/clim_sd
+
+# mask out some pixels from the anomaly if the climatological values are too low
+anom[clim_mean<1] <- NA
+# anom[terra::quantile(data[[clim_ind]],probs=0.8,na.rm=TRUE)<1] <- NA
+
 
 mrm <- function(rast, title, xlim, ylim, colbreaks, col_limits, cm, set_extremes) {
     library(rnaturalearth)
@@ -99,7 +105,7 @@ mclim <- mrm(clim_mean, title=paste0("Winter sea ice climatology (",paste0(range
 mcy <- mrm(current_year, title=paste("Winter",report_year,"sea ice"), xlim=xlim, ylim=ylim, cm=c("darkblue","blue","lightblue","white"), colbreaks=c(0,25,50,75,100), col_limits=conc_collims, set_extremes=TRUE) +
     labs(fill="% concentration") +
     theme(axis.text.y=element_blank())
-manom <- mrm(anom, title=paste("Winter",report_year,"sea ice anomalies"), xlim=xlim, ylim=ylim, cm=c("#0000FF","#5555FF","#AAAAFF","#FFFFFF","#FFAAAA","#FF5555","#FF0000"), colbreaks=-3:3, col_limits=c(-3,3), set_extremes=TRUE) +
+manom <- mrm(anom, title=paste("Winter",report_year,"sea ice anomalies"), xlim=xlim, ylim=ylim, cm=c("#0000FF","#5555FF","#AAAAFF","#FFFFFF","#FFAAAA","#FF5555","#FF0000"), colbreaks=-2:2, col_limits=c(-2,2), set_extremes=TRUE) +
     labs(fill="Standard deviations from the mean") +
     theme(axis.text.y.left=element_blank(),
           axis.text.y.right=element_text(size=14))
