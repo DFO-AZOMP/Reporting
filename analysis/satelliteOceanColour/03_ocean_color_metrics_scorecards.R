@@ -75,6 +75,45 @@ ggsave(filename=gsub(".png","_ForRegionalDoc.png",output_file),
        width=img_width,
        height=img_height)
 
+# SPLIT FOR POWERPOINTS
+
+# timing only
+inds <- grepl("timing",variable_str)
+gt <- make_scorecards(df_anomaly=df_anomaly %>% dplyr::filter(grepl("timing",variable)),
+                      df_climatology=df_climatology %>% dplyr::filter(grepl("timing",variable)),
+                      variable_str = variable_str[inds],
+                      variable_lbl = variable_lbl[inds],
+                      meansd_format = meansd_format[inds],
+                      region_str = region_str,
+                      region_lbl = region_lbl,
+                      first_year = min(years),
+                      last_year = max(years))
+ggsave(filename=gsub(".png","_timingOnly.png",output_file),
+       plot=gt,
+       dpi=150,
+       units="px",
+       width=img_width,
+       height=img_height*sum(inds)/length(inds)+100)
+
+# average only
+inds <- grepl("average",variable_str)
+gt <- make_scorecards(df_anomaly=df_anomaly %>% dplyr::filter(grepl("average",variable)),
+                      df_climatology=df_climatology %>% dplyr::filter(grepl("average",variable)),
+                      variable_str = variable_str[inds],
+                      variable_lbl = variable_lbl[inds],
+                      meansd_format = meansd_format[inds],
+                      region_str = region_str,
+                      region_lbl = region_lbl,
+                      first_year = min(years),
+                      last_year = max(years))
+ggsave(filename=gsub(".png","_averageOnly.png",output_file),
+       plot=gt,
+       dpi=150,
+       units="px",
+       width=img_width,
+       height=img_height*sum(inds)/length(inds)+100)
+
+
 
 #*******************************************************************************
 # SAR SCORECARDS
